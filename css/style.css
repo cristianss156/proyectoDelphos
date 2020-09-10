@@ -1,0 +1,304 @@
+/*estilo de html y body*/
+html,body{
+	margin:0;
+	height:100%;
+	min-width:750px;
+	background-color:#E6E6E6;
+	font-size:100%;
+	font-family:sans-serif;}
+a{text-decoration:none; color:#303F9F;}
+
+/*estilo del header y todo su contenido*/
+header{
+	z-index:2;
+	float:left;
+	position:fixed;
+	width:100%;
+	min-width:490px;}
+#status{
+	z-index:3;
+	position:fixed;
+	float:left;
+	width:100%;
+	height:25px;
+	background-color:#303F9F;}
+#status span{
+	float:left;
+	margin-top:3px;
+	margin-left:10px;
+	font-size:16px;
+	color:white;}
+#reloj{
+	float:right;
+	margin-top:3px;
+	margin-right:10px;
+	width:40px;
+	outline:0;
+	font-size:16px;
+	color:white;
+	background-color:rgba(0,0,0,0);
+	border:none;}
+#header{
+	z-index:2;
+	position:fixed;
+	float:left;
+	width:100%;
+	height:85px;
+	background-color:#3F51B5;
+	box-shadow:0 3px 5px rgba(0,0,0,0.26);
+	transition-duration:0.5s;}
+#titulo{
+	float:left;
+	margin-left:25px;
+	margin-top:41px;
+	font-size:26px;
+	color:white;}
+#mostrar{
+	cursor:pointer;
+	float:left;
+	border-radius:100px;
+	margin-left:15px;
+	margin-top:41px;
+	width:30px;
+	height:30px;
+	transition-duration:0.5s;}
+#mostrar:active{background-color:rgba(255,255,255,0.15);}
+#burger{max-width:100%;}
+
+/*estilo del boton para mostrar la opcion de cerrar sesión en la cabecera*/
+#options{
+	cursor:pointer;
+	float:right;
+	border-radius:100px;
+	margin-right:15px;
+	margin-top:41px;
+	width:30px;
+	height:30px;
+	transition-duration:0.5s;}
+#options:active{background-color:rgba(255,255,255,0.15);}
+#options img{max-width:100%;}
+#listOptions{
+	z-index:4;
+	position:relative;
+	display:none;
+	cursor:pointer;
+	float:right;
+	margin-top:35px;
+	margin-right:-5px;
+	width:150px;
+	height:40px;
+	background-color:white;
+	border-radius:3px;
+	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 5px 0 rgba(0,0,0,0.23);}
+#salir{
+	float:left;
+	margin-top:11px;
+	margin-left:6%;
+	width:94%;
+	height:100%;
+	color:grey;
+	font-size:18px;}
+
+/*estilo del menu lateral y todo su contenido*/
+#fondoMenu{
+	z-index:5;
+	visibility:hidden;
+	position:fixed;
+	clear:both;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0.5);
+	transition-duration:0.5s;}
+#menu{
+	position:fixed;
+	overflow:hidden;
+	float:left;
+	margin-left:-300px;
+	height:100%;
+	width:300px;
+	background-color:white;
+	transition-duration:0.5s;}
+#imagen{
+	float:left;
+	width:100%;
+	height:150px;
+	background-color:#3036b2;
+	overflow:hidden;
+	box-shadow:0 3px 5px rgba(0,0,0,0.26);}
+#imagen img{width:100%;}
+#items{
+	float:left;
+	margin-top:4%;
+	padding-bottom:4%;
+	width:100%;
+	border-bottom:1px solid #BDBDBD;}
+.contenedorItem{
+	float:left;
+	width:100%;
+	height:60px;}
+.item{
+	float:left;
+	width:80%;
+	height:60px;
+	color:grey;
+	transition-duration:0.5s;}
+.item span{
+	float:left;
+	margin-left:20px;
+	margin-top:20px;
+	font-size:20px;}
+#actual{background-color:#ECEFF1;}
+.actual{color:#303F9F;}
+.contenedorItem:hover{background-color:#ECEFF1;}
+.menuImg{float:left; width:20%; height:60px;}
+.menuImg img{
+	float:left;
+	margin-left:20px;
+	margin-top:15px;
+	max-width:50%;}
+
+#enlaces{
+	float:left;
+	margin-top:4%;
+	width:100%;}
+.enlaces{
+	float:left;
+	width:100%;
+	height:45px;
+	color:grey;
+	transition-duration:0.5s;}
+.enlaces span{
+	float:left;
+	margin-left:20px;
+	margin-top:15px;
+	font-size:15px;}
+.enlaces:hover{background-color:#ECEFF1;}
+
+/*estilo de los distintas etiquetas input, select, option, textarea, radiobutton y checkbox que se usan en todo la aplicación*/
+select, input[type=text], input[type=date], input[type=time], input[type="password"]{
+	outline:0;
+	border:none;
+	padding-left:5px;
+	font-size:16px;
+	border-bottom:2px solid grey;
+	transition-duration:0.5s;}
+select{width:150px;}
+option{color:grey;}
+input[type=text], input[type="password"]{width:150px;}
+select:focus, input[type=text]:focus, input[type=date]:focus, input[type=time]:focus, input[type="password"]:focus{border-bottom:2px solid #303F9F;}
+input[type=button]{
+	cursor:pointer;
+	outline:0;
+	border:none;
+	font-size:18px;
+	color:white;
+	background-color:#3F51B5;
+	border-radius:2px;
+	min-width:100px;
+	height:40px;
+	transition-duration:0.5s;}
+input[type=button]:hover{box-shadow:0px 5px 10px rgba(0,0,0,0.26);}
+input[type=button]:active{background-color:#7986CB;}
+textarea{
+	outline:0;
+	padding-left:5px;
+	border:none;
+	border-bottom:2px solid grey;
+	font-family:sans-serif;
+	min-width:350px;
+	min-height:20%;
+	max-width:450px; 
+	max-height:50px;
+	transition-duration:0.5s;}
+textarea:focus{border-bottom:2px solid #303F9F;}
+
+/*estilo de los checkbox*/
+input[type=checkbox]{display:none;}
+.outside{
+	position:relative;
+	width:14px;
+	height:14px;
+	border:2px solid grey;
+	border-radius:2px;
+	display:inline-block;
+	transition-duration:0.5s;}
+.inside{
+	position:absolute;
+	margin:7px;
+	width:0;
+	height:0;
+	border-radius:100px;
+	transition-duration:0.5s;}
+input[type=checkbox]:checked + label .inside{
+	background:#303F9F;
+	width:14px;
+	height:14px;
+	margin:0;
+	border-radius:0;}
+input[type=checkbox]:checked + label .outside{border-color:#303F9F;}
+.check{position:absolute; max-width:100%;}
+
+/*estilo de los radiobutton*/
+input[type=radio]{display:none;}
+ .outsiderb{
+ 	cursor:pointer;
+ 	margin-left:2%;
+ 	position:relative;
+ 	width:14px;
+ 	height:14px;
+ 	border:2px solid grey;
+ 	border-radius:100px;
+ 	display:inline-block; 
+ 	transition-duration:0.5s;}
+ .insiderb{
+ 	position:absolute;
+ 	margin-left:7px;
+ 	margin-top:7px;
+ 	background:#303F9F;
+ 	width:0;
+ 	height:0;
+ 	border-radius:100px;
+ 	transition-duration:0.5s;}
+ input[type=radio]:checked + label .insiderb{width:16px; height:16px; margin:-1px;}
+ input[type=radio]:checked + label .outsiderb{border-color:#303F9F;}
+
+
+/*estilo del contenedor que muestra distintos mensajes a lo largo de la aplicación*/
+#mensaje_info{
+	z-index:7;
+	display:none;
+	width:100%;
+	height:100%;
+	position:fixed;
+	clear:both;
+	float:left;}
+#informacion{
+	float:left;
+	margin-left:2%;
+	margin-top:44%;
+	padding:0.5%;
+	background-color:#323232;
+	border-radius:3px;
+	box-shadow:0 5px 10px rgba(0,0,0,0.26);}
+#mensaje{
+	float:left;
+	margin-left:15px;
+	margin-right:15px;
+	margin-top:9px;
+	height:100%;
+	color:white;
+	font-size:17px;}
+#aceptar_mensaje{
+	cursor:pointer;
+	outline:0;
+	border:none;
+	float:left;
+	color:#FFC107;
+	font-size:18px; 
+	background-color:#323232;
+	border-radius:2px; 
+	min-width:100px;
+	height:40px;
+	transition-duration:0.5s;}
+#aceptar_mensaje:hover{background-color:#424242;}
+#aceptar_mensaje:active{background-color:#616161;}
