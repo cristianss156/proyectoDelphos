@@ -13,7 +13,7 @@ function crearAjax(){
 function compruebaSesion(){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/Trabajo Cliente/php/verSesion.php", true);
+	objAjax.open("GET","http://localhost/proyectoDelphos/php/verSesion.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirDatosLogin;
 }
@@ -28,7 +28,7 @@ function login(_user, _pwd){
 	};
 
 	var jsonstring=JSON.stringify(datos);
-	objAjax.open("GET","http://localhost/Trabajo Cliente/php/login.php?datos="+jsonstring, true);
+	objAjax.open("GET","http://localhost/proyectoDelphos/php/login.php?datos="+jsonstring, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirResultadoLogin;
 }
@@ -37,7 +37,7 @@ function login(_user, _pwd){
 function salir(){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/Trabajo Cliente/php/cerrarSesion.php", true);
+	objAjax.open("GET","http://localhost/proyectoDelphos/php/cerrarSesion.php", true);
 	objAjax.send();
 
 	document.getElementById("contenido").style.display="none";

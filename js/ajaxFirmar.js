@@ -29,7 +29,7 @@ function buscar(_tipo, _dni){
 	V_dni=_dni;
 
 	var jsonstring=JSON.stringify(datosBusqueda);
-	objAjax.open("GET","http://localhost/Trabajo Cliente/php/buscar.php?datosBusqueda="+jsonstring, true);
+	objAjax.open("GET","http://localhost/proyectoDelphos/php/buscar.php?datosBusqueda="+jsonstring, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirBusqueda;
 }
