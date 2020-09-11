@@ -8,7 +8,6 @@
 	<link rel="stylesheet" type="text/css" href="css/styleIndex.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/scriptAnimaciones.js"></script>
-	<script type="text/javascript" src="js/scriptReloj.js"></script>
 	<script type="module" src="js/ajaxLogin.js"></script>
 	<link rel="icon" type="image/png" href="imagenes/logoDelphos.png">
 	<title>Inicio</title>
@@ -23,6 +22,7 @@
 			<a href="#"><span id="titulo">Inicio</span></a>
 		</div>
 	</header>
+
 	<!--section que muestra en la parte superior la hora y el nombre de la pagina-->
 	<!--<section id="statusBar">
 		<div id="status">
@@ -32,6 +32,7 @@
 			</form> 
 		</div>
 	</section>-->
+
 	<!--section que contiene el menu lateral con los enlaces a los distintas secciones de la aplicación y otros enlaces externos-->
 	<section id="fondoMenu">
 			<nav id="menu">
@@ -95,7 +96,7 @@
 			<span id="saludo">Bienvenido/a al sistema de gestion educativo, 
 				<span id="saludoNombre"></span>
 			</span>
-			<input id="salirLogin" type="button" value="Salir" onclick="salir()">
+			<input id="salirLogin" type="button" value="Salir">
 		</div>
 		<!--div que contiene la estructura que se activa al pulsar sobre ella-->
 		<div id="animacion" onclick="animar()">
@@ -126,7 +127,7 @@
 					<label>Contraseña:</label>
 					<input id="pwd" type="password" maxlength="10">
 				</div>
-				<input id="entrarLogin" type="button" onclick="login(usuario.value, pwd.value)" value="Entrar">
+				<input id="entrarLogin" type="button" value="Entrar">
 			</div>
 		</div>
 	</section>

@@ -162,12 +162,12 @@ function mostrarBuscar(){
 	}
 }
 
-function animar(){
-	if($("#middle").width()===0){
+function animar() {
+	if($("#middle").width() === 0){
 		$("#animacion").css({'transform':'rotate(360deg)'});
-		setTimeout(function(){$("#middle").css({'width':'80px'});},500);
-		setTimeout(function(){$("#middleUno").css({'height':'50px'});},700);
-		setTimeout(function(){$("#middleDos").css({'marginTop':'100px'});},900);
+		setTimeout(function() {$("#middle").css({'width':'80px'});}, 500);
+		setTimeout(function() {$("#middleUno").css({'height':'50px'});}, 700);
+		setTimeout(function() {$("#middleDos").css({'marginTop':'100px'});}, 900);
 		$("#semiUno").css({'boxShadow':'5px 0px 10px 0px rgba(0,0,0,0.26)'});
 		$("#semiDos").css({'boxShadow':'-5px 0px 10px 0px rgba(0,0,0,0.26)'});
 		$("#middleUno").css({'boxShadow':'0px 5px 10px 0px rgba(0,0,0,0.26)'});
@@ -175,13 +175,13 @@ function animar(){
 	}
 	else{
 		$("#middleDos").css({'marginTop':'200px'});
-		setTimeout(function(){$("#middleUno").css({'height':'0px'});},500);
+		setTimeout(function(){$("#middleUno").css({'height':'0px'});},300);
 		$("#semiUno").css({'boxShadow':'none'});
 		$("#semiDos").css({'boxShadow':'none'});
 		$("#middleUno").css({'boxShadow':'none'});
 		$("#middleDos").css({'boxShadow':'none'});
-		setTimeout(function(){$("#middle").css({'width':'0px'});},700);
-		setTimeout(function(){$("#animacion").css({'transform':'rotate(-360deg)'});},1500);
+		setTimeout(function(){$("#middle").css({'width':'0px'});},500);
+		setTimeout(function(){$("#animacion").css({'transform':'rotate(-360deg)'});},1000);
 	}
 }
 
