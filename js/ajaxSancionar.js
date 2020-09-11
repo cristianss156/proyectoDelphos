@@ -19,7 +19,7 @@ function mostrarAmo(_dni){
 
 	V_dni=_dni;
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/buscarAmonestacionesSancion.php?datosBusqueda="+_dni, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/buscarAmonestacionesSancion.php?datosBusqueda="+_dni, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirBusquedaAmoSan;
 }

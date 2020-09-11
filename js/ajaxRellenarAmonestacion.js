@@ -14,7 +14,7 @@ function crearAjax(){
 function salir(){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/cerrarSesion.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/cerrarSesion.php", true);
 	objAjax.send();
 
 	location.href = "index.html";
@@ -24,7 +24,7 @@ function salir(){
 function compruebaSesionGeneral(){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/verSesion.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/verSesion.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirDatosLoginGeneral;
 }
@@ -32,7 +32,7 @@ function compruebaSesionGeneral(){
 //funcion que se encarga de rellenar el select con los cursos
 function rellenarCursos(){
 	crearAjax();
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/listarCursos.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarCursos.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirCursos;
 }
@@ -41,7 +41,7 @@ function rellenarCursos(){
 function rellenarAlumnos(_curso){
 	curso=_curso;
 	crearAjax();
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/listarAlumnos.php?curso="+_curso, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarAlumnos.php?curso="+_curso, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirAlumnos;
 }
@@ -49,7 +49,7 @@ function rellenarAlumnos(_curso){
 //funcion que se encarga de rellenar el select con las asignaturas en funcion del curso que recibe como parametro
 function rellenarAsignaturas(_curso){
 	crearAjax();
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/listarAsignaturas.php?curso="+_curso, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarAsignaturas.php?curso="+_curso, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirAsignaturas;
 }
@@ -57,7 +57,7 @@ function rellenarAsignaturas(_curso){
 //funcion que se encarga de rellenar el select con las causas de amonestacion
 function rellenarCausasAmonestacion(){
 	crearAjax();
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/listarCausasAmonestacion.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarCausasAmonestacion.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirCausasAmonestacion;
 }
@@ -71,7 +71,7 @@ function crearCausaAmonestacion(nuevaCausaAmo){
 	}
 	else{
 		crearAjax();
-		objAjax.open("GET","http://localhost/proyectoDelphos/php/crearCausaAmonestacion.php?causa="+nuevaCausaAmo, true);
+		objAjax.open("GET","http://localhost/html/proyectoDelphos/php/crearCausaAmonestacion.php?causa="+nuevaCausaAmo, true);
 		objAjax.send();
 		objAjax.onreadystatechange=recibirNuevaAmonestacion;
 	}

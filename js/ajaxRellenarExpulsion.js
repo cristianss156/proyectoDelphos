@@ -13,7 +13,7 @@ function crearAjax(){
 //funcion que se encarga de rellenar el select con los cursos
 function rellenarCursosExpulsion(){
 	crearAjax();
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/listarCursos.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarCursos.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirCursosExpulsion;
 }
@@ -22,7 +22,7 @@ function rellenarCursosExpulsion(){
 function rellenarAlumnosExpulsion(_curso){
 	curso=_curso;
 	crearAjax();
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/listarAlumnos.php?curso="+_curso, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarAlumnos.php?curso="+_curso, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirAlumnosExpulsion;
 }
@@ -30,7 +30,7 @@ function rellenarAlumnosExpulsion(_curso){
 //funcion que se encarga de rellenar el select con las asignaturas en funcion del curso que recibe como parametro
 function rellenarAsignaturasExpulsion(_curso){
 	crearAjax();
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/listarAsignaturas.php?curso="+_curso, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarAsignaturas.php?curso="+_curso, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirAsignaturasExpulsion;
 }
@@ -38,7 +38,7 @@ function rellenarAsignaturasExpulsion(_curso){
 //funcion que se encarga de rellenar el select con las causas de expulsion
 function rellenarCausasExpulsion(){
 	crearAjax();
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/listarCausasExpulsion.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarCausasExpulsion.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirCausasExpulsion;
 }
@@ -52,7 +52,7 @@ function crearCausaExpulsion(nuevaCausaExp){
 	}
 	else{
 		crearAjax();
-		objAjax.open("GET","http://localhost/proyectoDelphos/php/crearCausaExpulsion.php?causa="+nuevaCausaExp, true);
+		objAjax.open("GET","http://localhost/html/proyectoDelphos/php/crearCausaExpulsion.php?causa="+nuevaCausaExp, true);
 		objAjax.send();
 		objAjax.onreadystatechange=recibirNuevaExpulsion;
 	}

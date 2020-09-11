@@ -17,7 +17,7 @@ function crearAjax(){
 function compruebaSesion(){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/verSesion.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/verSesion.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirDatosLogin;
 }
@@ -52,7 +52,7 @@ function amonestar(_curso, _alumno, _fecha, _hora, _asignatura, _causa){
 	};
 
 	var jsonstring=JSON.stringify(datosAmonestacion);
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/amonestar.php?datosAmonestacion="+jsonstring, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/amonestar.php?datosAmonestacion="+jsonstring, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirResultadoAmonestacion;
 }
@@ -73,7 +73,7 @@ function expulsar(_curso, _alumno, _fecha, _hora, _asignatura, _causa){
 	};
 
 	var jsonstring=JSON.stringify(datosExpulsion);
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/expulsar.php?datosExpulsion="+jsonstring, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/expulsar.php?datosExpulsion="+jsonstring, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirResultadoExpulsion;
 }
@@ -94,7 +94,7 @@ function expulsarSancion(_curso, _alumno, _fecha, _hora, _asignatura, _causa){
 	};
 
 	var jsonstring=JSON.stringify(datosExpulsion);
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/expulsar.php?datosExpulsion="+jsonstring, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/expulsar.php?datosExpulsion="+jsonstring, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirResultadoExpulsion;
 }
@@ -110,7 +110,7 @@ function firmar(_fecha){
 	};
 
 	var jsonstring=JSON.stringify(datosFirma);
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/firmar.php?datosFirma="+jsonstring, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/firmar.php?datosFirma="+jsonstring, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirResultadoFirma;
 }
@@ -128,7 +128,7 @@ function sancionar(_fecha, _sancion){
 	};
 
 	var jsonstring=JSON.stringify(datosSancion);
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/sancionar.php?datosSancion="+jsonstring, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/sancionar.php?datosSancion="+jsonstring, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirResultadoSancion;
 }

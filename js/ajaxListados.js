@@ -13,7 +13,7 @@ function crearAjax(){
 function salir(){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/cerrarSesion.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/cerrarSesion.php", true);
 	objAjax.send();
 
 	location.href = "index.html";
@@ -23,7 +23,7 @@ function salir(){
 function compruebaSesion(){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/verSesion.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/verSesion.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirDatosLogin;
 }
@@ -32,7 +32,7 @@ function compruebaSesion(){
 function rellenarProf(){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/buscarProf.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/buscarProf.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirPorf;
 }
@@ -41,7 +41,7 @@ function rellenarProf(){
 function rellenarCursos(){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/listarCursos.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarCursos.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirCursos;
 }
@@ -50,7 +50,7 @@ function rellenarCursos(){
 function buscarAmoExp(dni){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/buscarAmoExpAlumn.php?dni="+dni, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/buscarAmoExpAlumn.php?dni="+dni, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirAmoExpAlumn;
 }
@@ -59,7 +59,7 @@ function buscarAmoExp(dni){
 function alumnosSinFirma(){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/buscarAlumnosSinFirma.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/buscarAlumnosSinFirma.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirAlumnoSinFirma;
 }
@@ -68,7 +68,7 @@ function alumnosSinFirma(){
 function amoProfesor(prof){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/buscarAmoProf.php?prof="+prof, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/buscarAmoProf.php?prof="+prof, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirAmoProf;
 }
@@ -78,7 +78,7 @@ function amoProfesor(prof){
 function amoExpGrp(grupo){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/buscarAmoExpGrp.php?grp="+grupo, true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/buscarAmoExpGrp.php?grp="+grupo, true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirAmoExpGrp;
 }
@@ -87,7 +87,7 @@ function amoExpGrp(grupo){
 function profesoresAmoTotal(){
 	crearAjax();
 
-	objAjax.open("GET","http://localhost/proyectoDelphos/php/buscarAmoTotal.php", true);
+	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/buscarAmoTotal.php", true);
 	objAjax.send();
 	objAjax.onreadystatechange=recibirAmoTotales;
 }
