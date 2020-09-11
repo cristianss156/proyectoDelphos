@@ -2,7 +2,7 @@ function mueveReloj(){
    	momentoActual=new Date();
    	hora=momentoActual.getHours();
    	minuto=momentoActual.getMinutes();
-
+      
    	str_minuto=new String(minuto);
    	if(str_minuto.length==1){
       	minuto="0"+minuto;}

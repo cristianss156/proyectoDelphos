@@ -1,17 +1,20 @@
+import ajax from "./module/functions.js";
+
 var objAjax;
 
-function crearAjax(){
+/*function crearAjax(){
 	if(window.XMLHttpRequest){
 		objAjax=new XMLHttpRequest();
 	}
 	else{
 		objAjax = new ActiveXObject("Microsoft.XMLHTTP");
 	}
-}
+}*/
 
 //funcion que recoge los datos del usuario que ha hecho login de la sesion
 function compruebaSesion(){
-	crearAjax();
+	//crearAjax();
+	objAjax = ajax();
 
 	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/verSesion.php", true);
 	objAjax.send();
