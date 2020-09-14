@@ -9,15 +9,6 @@ $(document).ready(function(){
 		$("#menu").css({'marginLeft':'-300px'});
 	});
 
-	$("#status").mouseover(function(){
-		if($("#header").css("marginTop")==="-90px"){
-			$("#header").css({'marginTop':'0px'});
-			if("#tabs".length){
-				$("#tabs").css({'marginTop':'85px'});
-			}
-		}
-	});
-
 	$("#amonestaciones").click(function(){
 		$("#indicador").css({'marginLeft':'0%'});
 		$("#contenidoExpulsiones, #contenidoFirmas, #contenidoSancion").css({'display':'none'});
@@ -68,24 +59,6 @@ $(document).ready(function(){
     		$("#listOptions").css({'display':'none'});
     	}
     });
-});
-
-$(window).scroll(function(){
-	if($(this).scrollTop()>0 && $("#fondoMenu").css("visibility")==="hidden"){
-		$("#header").css({'marginTop':'-90px'});
-		$("#status").css({'boxShadow':'0px 3px 5px rgba(0,0,0,0.26)'});
-		if("#tabs".length){
-			$("#tabs").css({'marginTop':'25px'});
-			$("#status").css({'boxShadow':'none'});
-		}
-	}
-	else{
-		$("#header").css({'marginTop':'0px'});
-		$("#status").css({'boxShadow':'none'});
-		if("#tabs".length){
-			$("#tabs").css({'marginTop':'85px'});
-		}
-	}
 });
 
 function activarFiltros(contenido){
