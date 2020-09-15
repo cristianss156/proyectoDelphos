@@ -3,13 +3,11 @@
 const rutaPhp = "http://localhost/html/proyectoDelphos/php/";
 
 const ajax = () => {
-
 	if (window.XMLHttpRequest) {
 		return new XMLHttpRequest();
 	} else {
 		return new ActiveXObject("Microsoft.XMLHTTP");
 	}
-
 };
 
 const serverCall = ( ruta, callback ) => {
@@ -24,6 +22,12 @@ const serverCall = ( ruta, callback ) => {
 		}
 	}
 	objAjax.send();
-}
+};
 
-export { serverCall, rutaPhp };
+const mensaje = ( str ) => {
+	document.getElementById("mensaje").innerHTML = "";
+	document.getElementById("mensaje").innerHTML = str;
+	document.getElementById("mensaje_info").style.display = "block";
+};
+
+export { serverCall, rutaPhp, mensaje };

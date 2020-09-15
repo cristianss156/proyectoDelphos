@@ -1,6 +1,5 @@
-import { serverCall, rutaPhp } from "./module/functions.js";
+import { serverCall, rutaPhp, mensaje } from "./module/functions.js";
 
-var objAjax;
 
 // Evento que recoge los datos de la sesion de php al finalizar la carga de index.html
 document.addEventListener("DOMContentLoaded", function() {
@@ -10,13 +9,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Evento click que recoge el usuario y la contraseña de quien hace login y realiza la comprobacion
 document.getElementById("entrarLogin").addEventListener("click", function() {
-	let datos = {
-		usuario: document.getElementById("usuario").value,
-		password: document.getElementById("pwd").value
-	};
-	let jsonstring=JSON.stringify(datos);
-	let ruta = rutaPhp + "login.php?datos=" + jsonstring;
-	serverCall(ruta, recibirResultadoLogin);
+	if (document.getElementById("usuario").value == "" || document.getElementById("pwd").value == "") {
+		mensaje("Rellena los datos de inicio de sesión");
+		document.getElementById("usuario").focus();
+	} else {
+		let datos = {
+			usuario: document.getElementById("usuario").value,
+			password: document.getElementById("pwd").value
+		};
+		let jsonstring = JSON.stringify(datos);
+		let ruta = rutaPhp + "login.php?datos=" + jsonstring;
+		serverCall(ruta, recibirResultadoLogin);
+	}
 });
 
 // Enevto click que cierra la sesion de php
@@ -27,7 +31,7 @@ document.getElementById("salirLogin").addEventListener("click", function() {
 	document.getElementById("contenido").style.display = "none";
 	document.getElementById("usuario").value = "";
 	document.getElementById("pwd").value = "";
-	document.getElementById("formLogin").style.display = "block";
+	document.getElementById("formLogin").style.display = "flex";
 });
 
 // Funcion que comprueba que si hay algun usuario logeado al recagar la pagina
@@ -35,7 +39,7 @@ function recibirDatosLogin( response ) {
 	var mostrar = "";
 
 	if(response == "Sin datos") {
-		document.getElementById("formLogin").style.display = "block";
+		document.getElementById("formLogin").style.display = "flex";
 	} else {
 		let profesor = JSON.parse(response);
 		document.getElementById("saludoNombre").innerHTML = profesor[1];
@@ -50,9 +54,8 @@ function recibirDatosLogin( response ) {
 function recibirResultadoLogin( response ){
 	let mostrar = "";
 	if(response === "Sin resultado") {
-		document.getElementById("mensaje").innerHTML = "";
-		document.getElementById("mensaje").innerHTML = "Datos de inicio de sesión erroneos";
-		document.getElementById("mensaje_info").style.display = "block";
+		mensaje("Datos de inicio de sesión erroneos");
+		document.getElementById("usuario").focus();
 	} else {
 		let profesor = JSON.parse(response);
 		document.getElementById("formLogin").style.display = "none";
