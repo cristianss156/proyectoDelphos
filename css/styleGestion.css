@@ -31,13 +31,14 @@ header{height: 120px;}
 .tabs:hover{background-color:#7986CB;}
 .tabs:active{background-color:rgba(232,234,246,0.6);}
 #indicador{
-	clear:both;
-	float:left;
-	margin-top:-3px;
-	width:25%;
-	height:3px;
-	background-color:white;
-	transition-duration:0.5s;}
+	clear: both;
+	float: left;
+	margin-top: -4px;
+	width: 25%;
+	height: 4px;
+	background-color: white;
+	border-radius: 2px 2px 0 0;
+	transition-duration: 0.25s;}
 
 /*estilo de las distintas seciones que contienen los formularios para amonestar, expulsar, sancionar y firmar*/
 #contenidoAmonestaciones, #contenidoExpulsiones, #contenidoSancion, #contenidoFirmas{

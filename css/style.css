@@ -16,7 +16,6 @@ header{
 	float:left;
 	position:fixed;
 	width:100%;
-	min-width:490px;
 	height:60px;
 	background-color:#3F51B5;
 	box-shadow:0 3px 5px rgba(0,0,0,0.26);
@@ -29,6 +28,7 @@ header{
 	color:white;}
 #mostrar{
 	cursor:pointer;
+	display: flex;
 	float:left;
 	border-radius:100px;
 	margin-left:15px;
@@ -37,18 +37,22 @@ header{
 	height:30px;
 	transition-duration:0.5s;}
 #mostrar:active{background-color:rgba(255,255,255,0.15);}
-#burger{max-width:100%;}
+#burger{
+	display: block;
+  margin: auto;
+  color: white;}
 
 /*estilo del boton para mostrar la opcion de cerrar sesión en la cabecera*/
 #options{
-	cursor:pointer;
-	float:right;
-	border-radius:100px;
-	margin-right:15px;
-	margin-top:15px;
-	width:30px;
-	height:30px;
-	transition-duration:0.5s;}
+	cursor: pointer;
+	display: flex;
+	float: right;
+	border-radius: 100px;
+	margin-right: 15px;
+	margin-top: 15px;
+	width: 30px;
+	height: 30px;
+	transition-duration: 0.5s;}
 #options:active{background-color:rgba(255,255,255,0.15);}
 #options img{max-width:100%;}
 #listOptions{
@@ -57,19 +61,17 @@ header{
 	display:none;
 	cursor:pointer;
 	float:right;
-	margin-top: 10px;
-	margin-right:-5px;
+	top: 10px;
+	right:-5px;
 	width:150px;
 	height:40px;
 	background-color:white;
-	border-radius:3px;
+	border-radius: 4px;
 	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 5px 0 rgba(0,0,0,0.23);}
 #salir{
 	float:left;
-	margin-top:11px;
-	margin-left:6%;
-	width:94%;
-	height:100%;
+	display: block;
+	margin: auto 10px;
 	color:grey;
 	font-size:18px;}
 
@@ -152,14 +154,14 @@ header{
 select, input[type=text], input[type=date], input[type=time], input[type="password"]{
 	outline:0;
 	border:none;
-	padding-left:5px;
 	font-size:16px;
-	border-bottom:2px solid grey;
+	border-bottom: 1px solid grey;
 	transition-duration:0.5s;}
 select{width:150px;}
 option{color:grey;}
 input[type=text], input[type="password"]{width:150px;}
-select:focus, input[type=text]:focus, input[type=date]:focus, input[type=time]:focus, input[type="password"]:focus{border-bottom:2px solid #303F9F;}
+select:focus, input[type=text]:focus, input[type=date]:focus, input[type=time]:focus, input[type="password"]:focus{
+	border-bottom: 1px solid #303F9F;}
 input[type=button]{
 	cursor:pointer;
 	outline:0;
@@ -167,7 +169,7 @@ input[type=button]{
 	font-size:18px;
 	color:white;
 	background-color:#3F51B5;
-	border-radius:2px;
+	border-radius: 4px;
 	min-width:100px;
 	height:40px;
 	transition-duration:0.5s;}
@@ -240,7 +242,7 @@ input[type=radio]{display:none;}
 /*estilo del contenedor que muestra distintos mensajes a lo largo de la aplicación*/
 #mensaje_info{
 	z-index: 7;
-	/*display: none;*/
+	display: none;
 	position: fixed;
 	overflow: hidden;
 	left: 15px;
@@ -265,9 +267,9 @@ input[type=radio]{display:none;}
 	color:#FFC107;
 	font-size:18px; 
 	background-color:#323232;
-	border-radius:2px; 
+	border-radius: 4px; 
 	min-width:100px;
 	height:40px;
-	transition-duration:0.5s;}
+	transition-duration: 0.5s;}
 #aceptar_mensaje:hover{background-color:#424242;}
 #aceptar_mensaje:active{background-color:#616161;}

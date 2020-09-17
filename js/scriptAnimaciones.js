@@ -53,7 +53,7 @@ $(document).ready(function(){
 
     $("#options").click(function(){
     	if($("#listOptions").is(":hidden")){
-    		$("#listOptions").css({'display':'block'});
+    		$("#listOptions").css({'display':'flex'});
     	}
     	else{
     		$("#listOptions").css({'display':'none'});
