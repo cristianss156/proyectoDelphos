@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="js/scriptAnimaciones.js"></script>
 	<script type="module" src="js/ajaxLogin.js"></script>
 	<link rel="icon" type="image/png" href="imagenes/logoDelphos.png">
-	<title>Inicio</title>
+	<title>DELPHOS - Inicio</title>
 </head>
 <body>
 	<!--cabecera de la pagina-->
@@ -20,18 +20,25 @@
 			<span id="burger" class="material-icons md-24">menu</span>
 		</div>
 		<span id="titulo">Inicio</span>
+		<!--Icono de usuario registrado-->
+		<div id="userLog">
+			<span id="inicialLog"></span>
+		</div>
+		<div id="listOptions" onclick="salir()">
+			<span id="salir">Cerrar sesion</span>
+		</div>
 	</header>
 	<!--section que contiene el menu lateral con los enlaces a los distintas secciones de la aplicación y otros enlaces externos-->
 	<section id="fondoMenu">
 			<nav id="menu">
 				<div id="imagen">
-					<img src="imagenes/FORMSF14.gif">
+					<img src="imagenes/FORMSF14.gif" alt="">
 				</div>
 				<!--div con los enlaces a otras partes de la aplicación-->
 				<div id="items">
 					<div id="actual" class="contenedorItem">
 						<div class="menuImg">
-							<img src="imagenes/home.png">
+							<img src="imagenes/home.png" alt="Inicio">
 						</div>
 						<div class="item actual">
 							<span>Inicio</span>
@@ -40,7 +47,7 @@
 					<a id="listadosEnlace" href="listados.html">
 						<div class="contenedorItem">
 							<div class="menuImg">
-								<img src="imagenes/list.png">
+								<img src="imagenes/list.png" alt="Listados">
 							</div>
 							<div class="item">
 								<span>Listados</span>
@@ -50,7 +57,7 @@
 					<a href="gestion.html">
 						<div class="contenedorItem">
 							<div class="menuImg">
-								<img src="imagenes/admin.png">
+								<img src="imagenes/admin.png" alt="Gestión">
 							</div>
 							<div class="item">
 								<span>Gestión</span>
@@ -80,13 +87,10 @@
 	</section>
 	<!--section que contiene la tarjeta de bienvenida y la estructura animada-->
 	<section id="contenido">
-		<div id="welcome">
-			<span id="saludo">Hola de nuevo, 
-				<span id="saludoNombre"></span>
-			</span>
+		<!--<div id="welcome">
 			<input id="salirLogin" type="button" value="Salir">
-		</div>
-		<!--div que contiene la estructura que se activa al pulsar sobre ella-->
+		</div>-->
+		<!--div que contiene la estructura animada que se activa al pulsar sobre ella-->
 		<div id="animacion" onclick="animar()">
 			<div id="semiUno">
 			</div>

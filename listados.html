@@ -9,20 +9,20 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/scriptAnimaciones.js"></script>
-	<script type="text/javascript" src="js/ajaxListados.js"></script>
+	<script type="module" src="js/ajaxListados.js"></script>
 	<script type="text/javascript" src="js/imprimir.js"></script>
 	<link rel="icon" type="image/png" href="imagenes/logoDelphos.png">
-	<title>Listados</title>
+	<title>DELPHOS - Listados</title>
 </head>
-<body onload="compruebaSesion()">
+<body>
 	<!--cabecera de la pagina-->
 	<header>
 		<div id="mostrar">
 			<span id="burger" class="material-icons md-24">menu</span>
 		</div>
 		<span id="titulo">Listados</span>
-		<div id="options">
-			<img src="imagenes/options.png">
+		<div id="userLog">
+			<span id="inicialLog"></span>
 		</div>
 		<div id="listOptions" onclick="salir()">
 			<span id="salir">Cerrar sesion</span>

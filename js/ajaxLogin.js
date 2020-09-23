@@ -1,6 +1,5 @@
 import { serverCall, rutaPhp, mensaje } from "./module/functions.js";
 
-
 // Evento que recoge los datos de la sesion de php al finalizar la carga de index.html
 document.addEventListener("DOMContentLoaded", function() {
 	let ruta = rutaPhp + "verSesion.php";
@@ -42,8 +41,9 @@ function recibirDatosLogin( response ) {
 		document.getElementById("formLogin").style.display = "flex";
 	} else {
 		let profesor = JSON.parse(response);
-		document.getElementById("saludoNombre").innerHTML = profesor[1];
 		document.getElementById("contenido").style.display = "block";
+		document.getElementById("inicialLog").innerHTML = profesor[1][0];
+		document.getElementById("userLog").style.display = "flex";
 		if(profesor[2] === "Profesor") { mostrar = "none"; }
 		else { mostrar = "block"; }
 		document.getElementById("listadosEnlace").style.display = mostrar;
@@ -59,10 +59,12 @@ function recibirResultadoLogin( response ){
 	} else {
 		let profesor = JSON.parse(response);
 		document.getElementById("formLogin").style.display = "none";
-		document.getElementById("saludoNombre").innerHTML = profesor[0]["Nombre"] + " " + profesor[0]["Apellidos"];
 		document.getElementById("contenido").style.display = "block";
+		document.getElementById("inicialLog").innerHTML = profesor[0]["Nombre"][0];
+		document.getElementById("userLog").style.display = "flex";
 		if(profesor[0]["Permisos"] === "Profesor") { mostrar = "none"; }
 		else { mostrar = "block"; }
 		document.getElementById("listadosEnlace").style.display = mostrar;
+		mensaje("Hola de nuevo " + profesor[0]["Nombre"]);
 	}
 }

@@ -1,3 +1,5 @@
+import { serverCall, rutaPhp, mensaje } from "./module/functions.js";
+
 var objAjax;
 
 function crearAjax(){
@@ -19,14 +21,11 @@ function salir(){
 	location.href = "index.html";
 }
 
-//funcion que recoge los datos del usuario que ha hecho login de la sesion
-function compruebaSesion(){
-	crearAjax();
-
-	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/verSesion.php", true);
-	objAjax.send();
-	objAjax.onreadystatechange=recibirDatosLogin;
-}
+// Evento que recoge los datos de la sesion de php al finalizar la carga de listados.html
+document.addEventListener("DOMContentLoaded", function() {
+	let ruta = rutaPhp + "verSesion.php";
+	serverCall(ruta, recibirDatosLogin);
+});
 
 //funcion que rellena el select de profesores con los profesores
 function rellenarProf(){
@@ -92,18 +91,18 @@ function profesoresAmoTotal(){
 	objAjax.onreadystatechange=recibirAmoTotales;
 }
 
-//funcion que recibe los datos de la sesion y comprueba si hay algun usuario registrado
-//si no hay ningun usuario se redirecciona a index.html
-function recibirDatosLogin(){
-	if(objAjax.readyState === 4 && objAjax.status === 200){
-			var profesor=[];
+/* Funcion que recibe los datos de la sesion y comprueba si hay algun usuario registrado
+si no hay ningun usuario se redirecciona a index.html */
+function recibirDatosLogin( response ){
+	var profesor=[];
 			
-			if(objAjax.responseText==="Sin datos"){
-				location.href = "index.html";
-			}
-			else{ 
-				rellenarProf();
-			}
+	if(response === "Sin datos") {
+		location.href = "index.html";
+	} else{
+		let profesor = JSON.parse(response);
+		document.getElementById("inicialLog").innerHTML = profesor[1][0];
+		document.getElementById("userLog").style.display = "flex";
+		rellenarProf();
 	}
 }
 

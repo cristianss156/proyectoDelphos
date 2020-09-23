@@ -6,241 +6,334 @@ html, body {
 	min-width: 750px;
 	background-color: #E6E6E6;
 	font-size: 100%;
-	font-family: sans-serif;}
+	font-family: sans-serif;
+}
 	
-a{text-decoration:none; color:#303F9F;}
+a {
+	text-decoration: none;
+	color: #303F9F;
+}
 
 /*estilo del header y todo su contenido*/
-header{
-	z-index:2;
-	float:left;
-	position:fixed;
-	width:100%;
-	height:60px;
-	background-color:#3F51B5;
-	box-shadow:0 3px 5px rgba(0,0,0,0.26);
-	transition-duration:0.5s;}
-#titulo{
-	float:left;
-	margin-left:25px;
-	margin-top:15px;
-	font-size:26px;
-	color:white;}
-#mostrar{
-	cursor:pointer;
+header {
+	z-index: 2;
+	float: left;
+	position: fixed;
+	width: 100%;
+	height: 60px;
+	background-color: #3F51B5;
+	box-shadow: 0 3px 5px rgba(0,0,0,0.26);
+	transition-duration: 0.25s;
+}
+#titulo {
+	float: left;
+	margin: 15px 25px;
+	font-size: 26px;
+	color: #FFF;
+}
+#mostrar {
+	cursor: pointer;
 	display: flex;
-	float:left;
-	border-radius:100px;
-	margin-left:15px;
-	margin-top:15px;
-	width:30px;
-	height:30px;
-	transition-duration:0.5s;}
-#mostrar:active{background-color:rgba(255,255,255,0.15);}
-#burger{
+	float: left;
+	margin: 15px 0 0 15px;
+	width: 30px;
+	height: 30px;
+	border-radius: 100px;
+	transition-duration: 0.25s;
+}
+#mostrar:active {
+	background-color: rgba(255,255,255,0.15);
+}
+#burger {
 	display: block;
   margin: auto;
-  color: white;}
+  color: #FFF;
+}
+#userLog {
+	cursor: pointer;
+	display: none;
+	float: right;
+	margin: 13px 13px 0 0;
+	width: 30px;
+	height: 30px;
+	border: 2px solid #FFF;
+	background-color: #616DAF;
+	border-radius: 30px;
+}
+#inicialLog {
+	margin: auto;
+	font-size: 20px;
+	color: #FFF;
+}
 
 /*estilo del boton para mostrar la opcion de cerrar sesión en la cabecera*/
-#options{
+#options {
 	cursor: pointer;
 	display: flex;
 	float: right;
-	border-radius: 100px;
-	margin-right: 15px;
-	margin-top: 15px;
+	margin: 15px 15px 0 0;
 	width: 30px;
 	height: 30px;
-	transition-duration: 0.5s;}
-#options:active{background-color:rgba(255,255,255,0.15);}
-#options img{max-width:100%;}
-#listOptions{
-	z-index:4;
-	position:relative;
-	display:none;
-	cursor:pointer;
-	float:right;
+	border-radius: 100px;
+	transition-duration: 0.25s;
+}
+#options:active {
+	background-color: rgba(255,255,255,0.15);
+}
+#listOptions {
+	z-index: 4;
+	cursor: pointer;
+	position: relative;
+	display: none;
+	float: right;
 	top: 10px;
-	right:-5px;
-	width:150px;
-	height:40px;
-	background-color:white;
+	right: -5px;
+	width: 150px;
+	height: 40px;
+	background-color: #FFF;
 	border-radius: 4px;
-	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 5px 0 rgba(0,0,0,0.23);}
-#salir{
-	float:left;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 5px 0 rgba(0,0,0,0.23);
+}
+#salir {
+	float: left;
 	display: block;
 	margin: auto 10px;
-	color:grey;
-	font-size:18px;}
+	color: grey;
+	font-size: 18px;
+}
 
 /*estilo del menu lateral y todo su contenido*/
-#fondoMenu{
-	z-index:5;
-	visibility:hidden;
-	position:fixed;
-	clear:both;
-	width:100%;
-	height:100%;
-	background-color:rgba(0,0,0,0.5);
-	transition-duration:0.5s;}
-#menu{
-	position:fixed;
-	overflow:hidden;
-	float:left;
-	margin-left:-300px;
-	height:100%;
-	width:300px;
-	background-color:white;
-	transition-duration:0.5s;}
-#imagen{
-	float:left;
-	width:100%;
-	height:150px;
-	background-color:#3036b2;
-	overflow:hidden;
-	box-shadow:0 3px 5px rgba(0,0,0,0.26);}
-#imagen img{width:100%;}
-#items{
-	float:left;
-	margin-top:4%;
-	padding-bottom:4%;
-	width:100%;
-	border-bottom:1px solid #BDBDBD;}
-.contenedorItem{
-	float:left;
-	width:100%;
-	height:60px;}
-.item{
-	float:left;
-	width:80%;
-	height:60px;
-	color:grey;
-	transition-duration:0.5s;}
-.item span{
-	float:left;
-	margin-left:20px;
-	margin-top:20px;
-	font-size:20px;}
-#actual{background-color:#ECEFF1;}
-.actual{color:#303F9F;}
-.contenedorItem:hover{background-color:#ECEFF1;}
-.menuImg{float:left; width:20%; height:60px;}
-.menuImg img{
-	float:left;
-	margin-left:20px;
-	margin-top:15px;
-	max-width:50%;}
+#fondoMenu {
+	z-index: 5;
+	visibility: hidden;
+	position: fixed;
+	clear: both;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	transition-duration: 0.25s;
+}
+#menu {
+	overflow: hidden;
+	position: fixed;
+	float: left;
+	margin-left: -300px;
+	height: 100%;
+	width: 300px;
+	background-color: #FFF;
+	transition-duration: 0.25s;
+}
+#imagen {
+	overflow: hidden;
+	float: left;
+	width: 100%;
+	height: 150px;
+	background-color: #3036b2;
+	box-shadow: 0 3px 5px rgba(0,0,0,0.26);
+}
+#imagen img {
+	width: 100%;
+}
+#items {
+	float: left;
+	margin-top: 4%;
+	padding-bottom: 4%;
+	width: 100%;
+	border-bottom: 1px solid #BDBDBD;
+}
+.contenedorItem {
+	float: left;
+	width: 100%;
+	height: 60px;
+}
+.item {
+	float: left;
+	width: 80%;
+	height: 60px;
+	color: grey;
+	transition-duration: 0.25s;
+}
+.item span {
+	float: left;
+	margin: 20px 20px;
+	font-size: 20px;
+}
+#actual {
+	background-color: #ECEFF1;
+}
+.actual {
+	color: #303F9F;
+}
+.contenedorItem:hover {
+	background-color: #ECEFF1;
+}
+.menuImg {
+	float: left;
+	width: 20%;
+	height: 60px;
+}
+.menuImg img {
+	float: left;
+	margin: 15px 20px;
+	max-width: 50%;
+}
 
-#enlaces{
-	float:left;
-	margin-top:4%;
-	width:100%;}
-.enlaces{
-	float:left;
-	width:100%;
-	height:45px;
-	color:grey;
-	transition-duration:0.5s;}
-.enlaces span{
-	float:left;
-	margin-left:20px;
-	margin-top:15px;
-	font-size:15px;}
-.enlaces:hover{background-color:#ECEFF1;}
+#enlaces {
+	float: left;
+	margin-top: 4%;
+	width: 100%;
+}
+.enlaces {
+	float: left;
+	width: 100%;
+	height: 45px;
+	color: grey;
+	transition-duration: 0.25s;
+}
+.enlaces span {
+	float: left;
+	margin: 15px 20px;
+	font-size: 15px;
+}
+.enlaces:hover {
+	background-color: #ECEFF1;
+}
 
-/*estilo de los distintas etiquetas input, select, option, textarea, radiobutton y checkbox que se usan en todo la aplicación*/
-select, input[type=text], input[type=date], input[type=time], input[type="password"]{
-	outline:0;
-	border:none;
-	font-size:16px;
+/*estilo de los distintas etiquetas input, button, select, option, textarea, radiobutton y checkbox
+ que se usan en todo la aplicación*/
+select, input[type=text], input[type=date], input[type=time], input[type="password"] {
+	outline: 0;
+	border: none;
+	font-size: 16px;
 	border-bottom: 1px solid grey;
-	transition-duration:0.5s;}
-select{width:150px;}
-option{color:grey;}
-input[type=text], input[type="password"]{width:150px;}
-select:focus, input[type=text]:focus, input[type=date]:focus, input[type=time]:focus, input[type="password"]:focus{
-	border-bottom: 1px solid #303F9F;}
-input[type=button]{
-	cursor:pointer;
-	outline:0;
-	border:none;
-	font-size:18px;
-	color:white;
-	background-color:#3F51B5;
+	transition-duration: 0.25s;
+}
+select {
+	width: 150px;
+}
+option {
+	color: grey;
+}
+input[type=text], input[type="password"] {
+	width: 150px;
+}
+select:focus, input[type=text]:focus, input[type=date]:focus, input[type=time]:focus, input[type="password"]:focus {
+	border-bottom: 1px solid #303F9F;
+}
+input[type=button] {
+	cursor: pointer;
+	outline: 0;
+	border: none;
+	min-width: 100px;
+	height: 40px;
+	font-size: 18px;
+	color: #FFF;
+	background-color: #3F51B5;
 	border-radius: 4px;
-	min-width:100px;
-	height:40px;
-	transition-duration:0.5s;}
-input[type=button]:hover{box-shadow:0px 5px 10px rgba(0,0,0,0.26);}
-input[type=button]:active{background-color:#7986CB;}
-textarea{
-	outline:0;
-	padding-left:5px;
-	border:none;
-	border-bottom:2px solid grey;
-	font-family:sans-serif;
-	min-width:350px;
-	min-height:20%;
-	max-width:450px; 
-	max-height:50px;
-	transition-duration:0.5s;}
-textarea:focus{border-bottom:2px solid #303F9F;}
+	transition-duration: 0.25s;
+}
+input[type=button]:hover {
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.26);
+}
+input[type=button]:active {
+	background-color: #7986CB;
+}
+textarea {
+	outline: 0;
+	padding-left: 5px;
+	min-width: 350px;
+	min-height: 20%;
+	max-width: 450px; 
+	max-height: 50px;
+	font-family: sans-serif;
+	border: none;
+	border-bottom: 2px solid grey;
+	transition-duration: 0.25s;
+}
+textarea:focus {
+	border-bottom: 2px solid #303F9F;
+}
+button {
+	cursor: pointer;
+	outline: 0;
+	height: 40px;
+	border: none;
+	border-radius: 4px;
+	transition-duration: 0.25s;
+}
 
 /*estilo de los checkbox*/
-input[type=checkbox]{display:none;}
-.outside{
-	position:relative;
-	width:14px;
-	height:14px;
-	border:2px solid grey;
-	border-radius:2px;
-	display:inline-block;
-	transition-duration:0.5s;}
-.inside{
-	position:absolute;
-	margin:7px;
-	width:0;
-	height:0;
-	border-radius:100px;
-	transition-duration:0.5s;}
-input[type=checkbox]:checked + label .inside{
-	background:#303F9F;
-	width:14px;
-	height:14px;
-	margin:0;
-	border-radius:0;}
-input[type=checkbox]:checked + label .outside{border-color:#303F9F;}
-.check{position:absolute; max-width:100%;}
+input[type=checkbox] {
+	display: none;
+}
+.outside {
+	display: inline-block;
+	position: relative;
+	width: 14px;
+	height: 14px;
+	border: 2px solid grey;
+	border-radius: 2px;
+	transition-duration: 0.25s;
+}
+.inside {
+	position: absolute;
+	margin: 7px;
+	width: 0;
+	height: 0;
+	border-radius: 100px;
+	transition-duration: 0.25s;
+}
+input[type=checkbox]:checked + label .inside {
+	margin: 0;
+	width: 14px;
+	height: 14px;
+	border-radius: 0;
+	background: #303F9F;
+}
+input[type=checkbox]:checked + label .outside {
+	border-color: #303F9F;
+}
+.check {
+	position: absolute;
+	max-width: 100%;
+}
 
 /*estilo de los radiobutton*/
-input[type=radio]{display:none;}
- .outsiderb{
- 	cursor:pointer;
- 	margin-left:2%;
- 	position:relative;
- 	width:14px;
- 	height:14px;
- 	border:2px solid grey;
- 	border-radius:100px;
- 	display:inline-block; 
- 	transition-duration:0.5s;}
- .insiderb{
- 	position:absolute;
- 	margin-left:7px;
- 	margin-top:7px;
- 	background:#303F9F;
- 	width:0;
- 	height:0;
- 	border-radius:100px;
- 	transition-duration:0.5s;}
- input[type=radio]:checked + label .insiderb{width:16px; height:16px; margin:-1px;}
- input[type=radio]:checked + label .outsiderb{border-color:#303F9F;}
+input[type=radio] {
+	display: none;
+}
+ .outsiderb {
+ 	cursor: pointer;
+ 	display: inline-block;
+ 	position: relative;
+ 	margin-left: 2%;
+ 	width: 14px;
+ 	height: 14px;
+ 	border: 2px solid grey;
+ 	border-radius: 100px;
+ 	transition-duration: 0.25s;
+ }
+ .insiderb {
+ 	position: absolute;
+ 	margin: 7px;
+ 	width: 0;
+ 	height: 0;
+ 	border-radius: 100px;
+ 	background: #303F9F;
+ 	transition-duration: 0.25s;
+ }
+ input[type=radio]:checked + label .insiderb {
+ 	width: 16px;
+ 	height: 16px;
+ 	margin: -1px;
+ }
+ input[type=radio]:checked + label .outsiderb {
+ 	border-color: #303F9F;
+ }
 
 
 /*estilo del contenedor que muestra distintos mensajes a lo largo de la aplicación*/
-#mensaje_info{
+#mensaje_info {
 	z-index: 7;
 	display: none;
 	position: fixed;
@@ -250,26 +343,25 @@ input[type=radio]{display:none;}
 	padding: 4px;
   border-radius: 4px;
 	background-color: #323232;
-	box-shadow: 0 5px 10px rgba(0,0,0,0.26);}
-#mensaje{
-	float:left;
-	margin-left:15px;
-	margin-right:15px;
-	margin-top:9px;
-	height:100%;
-	color:white;
-	font-size:17px;}
-#aceptar_mensaje{
-	cursor:pointer;
-	outline:0;
-	border:none;
-	float:left;
-	color:#FFC107;
-	font-size:18px; 
-	background-color:#323232;
-	border-radius: 4px; 
-	min-width:100px;
-	height:40px;
-	transition-duration: 0.5s;}
-#aceptar_mensaje:hover{background-color:#424242;}
-#aceptar_mensaje:active{background-color:#616161;}
+	box-shadow: 0 5px 10px rgba(0,0,0,0.26);
+}
+#mensaje {
+	float: left;
+	margin: 11px 15px 0 15px;
+	height: 100%;
+	color: #FFF;
+	font-size: 17px;
+}
+#aceptar_mensaje {
+	float: left;
+	color: #FFC107;
+	font-size: 18px; 
+	background-color: #323232; 
+	min-width: 100px;
+}
+#aceptar_mensaje:hover {
+	background-color: #424242;
+}
+#aceptar_mensaje:active {
+	background-color: #616161;
+}

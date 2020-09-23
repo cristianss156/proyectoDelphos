@@ -4,7 +4,7 @@ var tipoBusqueda;
 var V_dni;
 
 /* funcion que recibe el dni del alumno y el tipo de busqueda que hay que hacer (amonestaciones o expulsiones)
- y realiza la busqueda*/
+ y realiza la busqueda */
  var inputs = document.getElementsByClassName("filtro");
  for (let i = 0; i < inputs.length; i++) {
  	inputs[i].addEventListener("click", function() {
@@ -24,25 +24,9 @@ var V_dni;
 	 })
  };
 
-/*function buscar( _tipo, _dni ){
-	clearTable();
-
-	var datosBusqueda = {
-		tipo: _tipo,
-		dni: _dni
-	};
-
-	tipoBusqueda=_tipo;
-	V_dni=_dni;
-
-	var jsonstring = JSON.stringify(datosBusqueda);
-	let ruta = rutaPhp + "buscar.php?datosBusqueda=" + jsonstring;
-	serverCall(ruta, recibirBusqueda);
-}*/
-
 /* funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion,
 si la respuesta es correcta se llama a una funcion concreta dependiendo de si se quiere 
-firma una amonestacion o una expulsion*/
+firma una amonestacion o una expulsion */
 function recibirBusqueda( response ){
 	if(response === "Sin resultado") {
 		clearTable();

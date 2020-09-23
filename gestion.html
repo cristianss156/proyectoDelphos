@@ -9,24 +9,23 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/scriptAnimaciones.js"></script>
-	<script type="text/javascript" src="js/ajaxRellenarAmonestacion.js"></script>
+	<script type="module" src="js/ajaxRellenarAmonestacion.js"></script>
 	<script type="text/javascript" src="js/ajaxRellenarExpulsion.js"></script>
 	<script type="module" src="js/ajaxFirmar.js"></script>
 	<script type="text/javascript" src="js/ajaxSancionar.js"></script>
 	<script type="text/javascript" src="js/ajaxInsertarDatos.js"></script>
 	<link rel="icon" type="image/png" href="imagenes/logoDelphos.png">
-	<title>Gestión</title>
+	<title>DELPHOS - Gestión</title>
 </head>
-<body onload="compruebaSesionGeneral()">
+<body>
 	<!--cabecera de la pagina-->
 	<header>
 		<div id="mostrar">
 			<span id="burger" class="material-icons md-24">menu</span>
 		</div>
 		<span id="titulo">Gestión</span>
-		<div id="options">
-			<!--<img src="imagenes/options.png">-->
-			<span id="burger" class="material-icons md-24">more_vert</span>
+		<div id="userLog">
+			<span id="inicialLog"></span>
 		</div>
 		<div id="listOptions" onclick="salir()">
 			<span id="salir">Cerrar sesion</span>
