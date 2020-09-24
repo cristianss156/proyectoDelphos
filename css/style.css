@@ -22,7 +22,7 @@ header {
 	width: 100%;
 	height: 60px;
 	background-color: #3F51B5;
-	box-shadow: 0 3px 5px rgba(0,0,0,0.26);
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.26);
 	transition-duration: 0.25s;
 }
 #titulo {
@@ -42,7 +42,7 @@ header {
 	transition-duration: 0.25s;
 }
 #mostrar:active {
-	background-color: rgba(255,255,255,0.15);
+	background-color: rgba(255, 255, 255, 0.15);
 }
 #burger {
 	display: block;
@@ -67,39 +67,35 @@ header {
 }
 
 /*estilo del boton para mostrar la opcion de cerrar sesión en la cabecera*/
-#options {
-	cursor: pointer;
-	display: flex;
-	float: right;
-	margin: 15px 15px 0 0;
-	width: 30px;
-	height: 30px;
-	border-radius: 100px;
-	transition-duration: 0.25s;
-}
-#options:active {
-	background-color: rgba(255,255,255,0.15);
-}
 #listOptions {
 	z-index: 4;
-	cursor: pointer;
 	position: relative;
-	display: none;
+	/*display: none;*/
+	display: flex;
+	clear: both;
 	float: right;
-	top: 10px;
-	right: -5px;
-	width: 150px;
-	height: 40px;
+	top: -10px;
+	right: 5px;
+	width: 320px;
+	height: 150px;
 	background-color: #FFF;
 	border-radius: 4px;
-	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 5px 0 rgba(0,0,0,0.23);
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.23);
 }
 #salir {
+	cursor: pointer;
 	float: left;
 	display: block;
 	margin: auto 10px;
+	padding: 10px;
 	color: grey;
 	font-size: 18px;
+	border: 1px solid #BDBDBD;
+	border-radius: 4px;
+	transition-duration: 0.25s;
+}
+#salir:hover {
+	background-color: rgba(189, 189, 189, 0.15)
 }
 
 /*estilo del menu lateral y todo su contenido*/
@@ -110,7 +106,7 @@ header {
 	clear: both;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 	transition-duration: 0.25s;
 }
 #menu {
@@ -129,7 +125,7 @@ header {
 	width: 100%;
 	height: 150px;
 	background-color: #3036b2;
-	box-shadow: 0 3px 5px rgba(0,0,0,0.26);
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.26);
 }
 #imagen img {
 	width: 100%;
@@ -233,7 +229,7 @@ input[type=button] {
 	transition-duration: 0.25s;
 }
 input[type=button]:hover {
-	box-shadow: 0px 5px 10px rgba(0,0,0,0.26);
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.26);
 }
 input[type=button]:active {
 	background-color: #7986CB;
@@ -343,7 +339,7 @@ input[type=radio] {
 	padding: 4px;
   border-radius: 4px;
 	background-color: #323232;
-	box-shadow: 0 5px 10px rgba(0,0,0,0.26);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.26);
 }
 #mensaje {
 	float: left;

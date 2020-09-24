@@ -22,8 +22,8 @@ document.getElementById("entrarLogin").addEventListener("click", function() {
 	}
 });
 
-// Enevto click que cierra la sesion de php
-document.getElementById("salirLogin").addEventListener("click", function() {
+// Evento click que cierra la sesion de php
+document.getElementById("salir").addEventListener("click", function() {
 	let ruta = rutaPhp + "cerrarSesion.php";
 	serverCall(ruta);
 
@@ -31,6 +31,9 @@ document.getElementById("salirLogin").addEventListener("click", function() {
 	document.getElementById("usuario").value = "";
 	document.getElementById("pwd").value = "";
 	document.getElementById("formLogin").style.display = "flex";
+	document.getElementById("inicialLog").innerHTML = "";
+	document.getElementById("userLog").style.display = "none";
+	document.getElementById("listOptions").style.display = "none";
 });
 
 // Funcion que comprueba que si hay algun usuario logeado al recagar la pagina
@@ -65,6 +68,5 @@ function recibirResultadoLogin( response ){
 		if(profesor[0]["Permisos"] === "Profesor") { mostrar = "none"; }
 		else { mostrar = "block"; }
 		document.getElementById("listadosEnlace").style.display = mostrar;
-		mensaje("Hola de nuevo " + profesor[0]["Nombre"]);
 	}
 }
