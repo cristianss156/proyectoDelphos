@@ -1,141 +1,188 @@
 /*estilo que se aplica a la cabecera de la aplicación en el aparto de gestión*/
-header{height: 120px;}
+header {
+	height: 120px;
+}
 
 /*estilo de el enlace a los listados*/
-#listadosEnlace{display:none;}
+#listadosEnlace {
+	display: none;
+}
 
 /*estilo de las pestañas con las opciones de gestión*/
-#tabs{
-	z-index:2;
-	position:relative;
-	float:left;
+#tabs {
+	z-index: 2;
+	position: relative;
+	float: left;
 	margin-top: 14px;
-	width:100%;
-	height:60px;
-	background-color:#3F51B5;
-	box-shadow:0 3px 5px rgba(0,0,0,0.26);
-	transition-duration:0.5s;}
-.tabs{
-	cursor:pointer;
-	float:left;
-	width:25%;
-	height:60px;
-	transition-duration:0.5s;}
-.tabs span{
-	float:left;
-	margin-top:20px;
-	width:100%;
-	text-align:center;
-	color:white;
-	font-size:20px;}
-.tabs:hover{background-color:#7986CB;}
-.tabs:active{background-color:rgba(232,234,246,0.6);}
-#indicador{
+	width: 100%;
+	height: 60px;
+	background-color: #3F51B5;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.26);
+	transition-duration: 0.25s;
+}
+.tabs {
+	cursor: pointer;
+	float: left;
+	width: 25%;
+	height: 60px;
+	transition-duration: 0.25s;
+}
+.tabs span {
+	float: left;
+	margin-top: 20px;
+	width: 100%;
+	text-align: center;
+	color:  #FFF;
+	font-size: 20px;
+}
+.tabs:hover {
+	background-color:#7986CB;
+}
+.tabs:active {
+	background-color:rgba(232, 234, 246, 0.6);
+}
+#indicador {
 	clear: both;
 	float: left;
 	margin-top: -4px;
 	width: 25%;
 	height: 4px;
-	background-color: white;
+	background-color: #FFF;
 	border-radius: 2px 2px 0 0;
-	transition-duration: 0.25s;}
+	transition-duration: 0.25s;
+}
 
 /*estilo de las distintas seciones que contienen los formularios para amonestar, expulsar, sancionar y firmar*/
-#contenidoAmonestaciones, #contenidoExpulsiones, #contenidoSancion, #contenidoFirmas{
-	z-index:1;
-	position:relative;
-	float:left;
-	margin-left:1%;
-	margin-top:160px;
-	margin-bottom:1%;
-	width:98%;}
-#contenidoExpulsiones{display:none;}
-#contenidoSancion{display:none;}
-#contenidoFirmas{display:none;}
-#formularioAmonestaciones, #formularioExpulsiones, #formularioSancion, #formularioFirmas{
-	float:left;
-	margin-left:2%;
-	margin-top:2%;
-	padding:2%;
-	width:500px;
-	max-height:400px;
-	border-radius:3px;
-	background-color:white;
-	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 5px 0 rgba(0,0,0,0.23);}
-#causa_amo_nueva, #causa_exp_nueva{display:none;}
-#amonestar, #expulsar, #firmar, #sancionar{float:right;}
-#expulsarSancion{
-	float:right;
-	margin-left:2%;
-	background-color:white;
-	color:#3F51B5;}
-#expulsarSancion:active{background-color:#ECEFF1;}
-#crearAmo, #crearExp{background-color:white; color:#3F51B5;}
-#crearAmo:active, #crearExp:active{background-color:#ECEFF1;}
-#label_alumno, #label_hora_amo, #label_causa_amo, #label_alumno_Exp, #label_hora_exp, #label_causa_exp{margin-left:10px;}
+#contenidoAmonestaciones, #contenidoExpulsiones, #contenidoSancion, #contenidoFirmas {
+	z-index: 1;
+	position: relative;
+	float: left;
+	margin: 160px 0 1% 1%;
+	width: 98%;
+}
+#contenidoExpulsiones, #contenidoSancion, #contenidoFirmas {
+	display: none;
+}
+#formularioAmonestaciones, #formularioExpulsiones, #formularioSancion, #formularioFirmas {
+	float: left;
+	margin: 2% 0 0 2%;
+	padding: 2%;
+	width: 500px;
+	max-height: 400px;
+	border-radius: 4px;
+	background-color: #FFF;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 5px 0 rgba(0,0,0,0.23);
+}
+#causa_amo_nueva, #causa_exp_nueva {
+	display: none;
+}
+#amonestar, #expulsar, #firmar, #sancionar {
+	float: right;
+}
+#expulsarSancion {
+	float: right;
+	margin-left: 2%;
+	background-color: #FFF;
+	color: #3F51B5;
+}
+#expulsarSancion:active {
+	background-color: #ECEFF1;
+}
+#crearAmo, #crearExp {
+	background-color: #FFF;
+	color: #3F51B5;
+}
+#crearAmo:active, #crearExp:active {
+	background-color: #ECEFF1;
+}
+#label_alumno, #label_hora_amo, #label_causa_amo, #label_alumno_Exp, #label_hora_exp, #label_causa_exp {
+	margin-left: 10px;
+}
 
 /*estilo de la tabla que muestra la información de la listas para soncionar y firmar*/
-#tablaDeFirmas, #tablaDeSanciones{
-	overflow:hidden;
-	float:left;
-	margin-left:2%;
-	margin-top:2%;
-	margin-bottom:2%;
-	width:680px;
-	max-height:350px;
-	border-radius:3px;
-	background-color:white;
-	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 5px 0 rgba(0,0,0,0.23);}
-#tablaDeSanciones{display:none;}
-#tituloTabla, #tituloTablaSanciones{
-	float:left;
-	width:100%;
-	height:50px;
-	background-color:#3F51B5;
-	box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 5px 0 rgba(0,0,0,0.23);}
-.tituloTabla, .tituloTablaSanciones{
-	float:left;
-	width:18.66%;
-	height:50px;
-	background-color:#3F51B5;
-	color:white;}
-.RBTabla, .RBTablaSanciones{
-	float:left;
-	width:4%;
-	height:50px;
-	background-color:#3F51B5;}
-.tituloTabla span, .tituloTablaSanciones span{
-	float:left;
-	width:100%;
-	margin-top:13px;
-	font-size:18px;
-	text-align:center;}
-#contenedorTabla, #contenedorTablaSanciones{
-	overflow:scroll;
-	overflow-x:hidden;
-	float:left; 
-	width:100%; 
-	height:300px;}
+#tablaDeFirmas, #tablaDeSanciones {
+	overflow: hidden;
+	float: left;
+	margin: 2% 0 2% 2%;
+	width: 680px;
+	max-height: 350px;
+	border-radius: 4px;
+	background-color: #FFF;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 5px 0 rgba(0,0,0,0.23);
+}
+#tablaDeSanciones {
+	display: none;
+}
+#tituloTabla, #tituloTablaSanciones {
+	float: left;
+	width: 100%;
+	height: 50px;
+	background-color: #3F51B5;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 5px 0 rgba(0,0,0,0.23);
+}
+.tituloTabla, .tituloTablaSanciones {
+	float: left;
+	width: 18.66%;
+	height: 50px;
+	background-color: #3F51B5;
+	color: #FFF;
+}
+.RBTabla, .RBTablaSanciones {
+	float: left;
+	width: 4%;
+	height: 50px;
+	background-color: #3F51B5;
+}
+.tituloTabla span, .tituloTablaSanciones span {
+	float: left;
+	width: 100%;
+	margin-top: 13px;
+	font-size: 18px;
+	text-align: center;
+}
+#contenedorTabla, #contenedorTablaSanciones {
+	overflow: scroll;
+	overflow-x: hidden;
+	float: left; 
+	width: 100%; 
+	height: 300px;
+}
 
 /*estilo de los filtros de busqueda en frimas y sanciones*/
-#filtros, #filtros_sancion{display:none;}
-#table{
-	float:left;
-	margin-top:10px;
-	margin-bottom:10px; 
-	border-collapse:collapse;
-	width:100%;
-	text-align:center;}
-tr{border-bottom:1px solid #E0E0E0; transition-duration:0.5s;}
-.celda{width:19.2%; height:65px;}
-.boton{width:4%; height:65px;}
-tr:hover{background-color:#ECEFF1;}
+#filtros, #filtros_sancion {
+	display: none;
+}
+#table {
+	float: left;
+	margin: 10px 0;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+}
+tr {
+	border-bottom: 1px solid #E0E0E0;
+	transition-duration: 0.25s;
+}
+.celda {
+	width: 19.2%;
+	height: 65px;
+}
+.boton {
+	width: 4%;
+	height: 65px;
+}
+tr:hover {
+	background-color: #ECEFF1;
+}
 
 /*estilo del boton de buscar en firmas y sanciones*/
-.buscar{
-	cursor:pointer;
-	width:23px;
-	height:23px;
-	border-radius:100px;
-	transition-duration:0.5s;}
-.buscar:hover{background-color:#ECEFF1;}
+.buscar {
+	cursor: pointer;
+	width: 23px;
+	height: 23px;
+	border-radius: 100px;
+	transition-duration: 0.25s;
+}
+.buscar:hover {
+	background-color: #ECEFF1;
+}
