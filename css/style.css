@@ -22,7 +22,7 @@ header {
 	width: 100%;
 	height: 60px;
 	background-color: #3F51B5;
-	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.26);
+	box-shadow: 0 7px 10px rgba(0, 0, 0, 0.26);
 	transition-duration: 0.25s;
 }
 #titulo {
@@ -69,12 +69,9 @@ header {
 /*estilo del boton para mostrar la opcion de cerrar sesión en la cabecera*/
 #listOptions {
 	z-index: 4;
-	position: relative;
-	/*display: none;*/
-	display: flex;
-	clear: both;
-	float: right;
-	top: -10px;
+	position: absolute;
+	display: none;
+	top: 55px;
 	right: 5px;
 	width: 320px;
 	height: 150px;

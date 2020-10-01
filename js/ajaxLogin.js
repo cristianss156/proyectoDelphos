@@ -38,7 +38,7 @@ document.getElementById("salir").addEventListener("click", function() {
 
 // Funcion que comprueba que si hay algun usuario logeado al recagar la pagina
 function recibirDatosLogin( response ) {
-	var mostrar = "";
+	let mostrar = "";
 
 	if(response == "Sin datos") {
 		document.getElementById("formLogin").style.display = "flex";
@@ -56,6 +56,7 @@ function recibirDatosLogin( response ) {
 // Funcion que comprueba si el login es correcto
 function recibirResultadoLogin( response ){
 	let mostrar = "";
+	
 	if(response === "Sin resultado") {
 		mensaje("Datos de inicio de sesión erroneos");
 		document.getElementById("usuario").focus();

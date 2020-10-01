@@ -10,15 +10,15 @@ var V_dni;
  	inputs[i].addEventListener("click", function() {
 	 	clearTable();
 
-		var datosBusqueda = {
+		let datosBusqueda = {
 			tipo: this.value,
 			dni: document.getElementById("dni").value
 		};
 
-		tipoBusqueda = _tipo;
+		tipoBusqueda = this.value;
 		V_dni = document.getElementById("dni").value;
 
-		var jsonstring = JSON.stringify(datosBusqueda);
+		let jsonstring = JSON.stringify(datosBusqueda);
 		let ruta = rutaPhp + "buscar.php?datosBusqueda=" + jsonstring;
 		serverCall(ruta, recibirBusqueda);
 	 })
@@ -30,7 +30,6 @@ firma una amonestacion o una expulsion */
 function recibirBusqueda( response ){
 	if(response === "Sin resultado") {
 		clearTable();
-
 		document.getElementById("fech_firma").min = "";
 		document.getElementById("fech_firma").value = "";
 		mensaje("No se han encontrado datos que coincidan con tu busqueda");
@@ -46,52 +45,33 @@ function recibirBusqueda( response ){
 }
 
 // funcion que formatea los datos de las amonestaciones en una tabla
-function formatearBusqueda(ArrayBusqueda){
+function formatearBusqueda( ArrayBusqueda ){
 	clearTable();
 
 	var tabla = document.createElement('table');
 	tabla.setAttribute("id", "table");
 
-	for(var i in ArrayBusqueda) {
+	for(let i in ArrayBusqueda) {
 		var tr = document.createElement('tr');
 
-		td = document.createElement('td');
-		td.innerHTML = V_dni;
-		td.setAttribute("class", "celda");
-		tr.appendChild(td);
+		crearTd(V_dni, tr);
+		crearTd(ArrayBusqueda[i].Nombre, tr);
+		crearTd(ArrayBusqueda[i].NombreAsig, tr);
+		crearTd("Pepe", tr);
+		crearTd(ArrayBusqueda[i].descripcion, tr);
 
-		td = document.createElement('td');
-		td.innerHTML = ArrayBusqueda[i].Nombre;
-		td.setAttribute("class", "celda");
-		tr.appendChild(td);
-
-		td = document.createElement('td');
-		td.innerHTML = ArrayBusqueda[i].NombreAsig;
-		td.setAttribute("class", "celda");
-		tr.appendChild(td);
-
-		td = document.createElement('td');
-		td.innerHTML = "Pepe";
-		td.setAttribute("class", "celda");
-		tr.appendChild(td);
-
-		td = document.createElement('td');
-		td.innerHTML = ArrayBusqueda[i].descripcion;
-		td.setAttribute("class", "celda");
-		tr.appendChild(td);
-
-		td=document.createElement('td');
-		boton=document.createElement('input');
-		boton.setAttribute("type","radio");
-		boton.setAttribute("id",i);
-		boton.setAttribute("name","RBFirma");
-		boton.setAttribute("value",ArrayBusqueda[i].CodAmonestacion);
-		boton.setAttribute("onclick","aplicarFecha('"+ArrayBusqueda[i].Fecha_Amonestacion+"'), recogerCod(this.value)");
-		label=document.createElement("label");
-		label.setAttribute("for",i);
-		out=document.createElement("div");
-		out.setAttribute("class","outsiderb");
-		dentro=document.createElement("div");
+		let td = document.createElement('td');
+		let boton = document.createElement('input');
+		boton.setAttribute("type", "radio");
+		boton.setAttribute("id", i);
+		boton.setAttribute("name", "RBFirma");
+		boton.setAttribute("value", ArrayBusqueda[i].CodAmonestacion);
+		boton.setAttribute("onclick", "aplicarFecha('"+ArrayBusqueda[i].Fecha_Amonestacion+"'), recogerCod(this.value)");
+		let label = document.createElement("label");
+		label.setAttribute("for", i);
+		let out = document.createElement("div");
+		out.setAttribute("class", "outsiderb");
+		let dentro = document.createElement("div");
 		dentro.setAttribute("class","insiderb");
 		out.appendChild(dentro);
 		label.appendChild(out);
@@ -108,67 +88,56 @@ function formatearBusqueda(ArrayBusqueda){
 
 //funcion que formatea los datos de las expulsiones en una tabla
 function formatearBusquedaExpulsiones(ArrayBusqueda){
-	clearTable()
+	clearTable();
 
 	var tabla = document.createElement('table');
 	tabla.setAttribute("id", "table");
 
-	for(var i in ArrayBusqueda){
+	for(let i in ArrayBusqueda){
 		var tr = document.createElement('tr');
 
-	td=document.createElement('td');
-	td.innerHTML=V_dni;
-	td.setAttribute("class", "celda");
-	tr.appendChild(td);
+		crearTd(V_dni, tr);
+		crearTd(ArrayBusqueda[i].Nombre, tr);
+		crearTd(ArrayBusqueda[i].NombreAsig, tr);
+		crearTd("pepe", tr);
+		crearTd(ArrayBusqueda[i].descripcion, tr);
 
-	td=document.createElement('td');
-	td.innerHTML=ArrayBusqueda[i].Nombre;
-	td.setAttribute("class", "celda");
-	tr.appendChild(td);
+		let td = document.createElement('td');
+		let boton = document.createElement('input');
+		boton.setAttribute("type", "radio");
+		boton.setAttribute("id", i);
+		boton.setAttribute("name", "RBFirma");
+		boton.setAttribute("value", ArrayBusqueda[i].CodExpulsiones);
+		boton.setAttribute("onclick", "aplicarFecha('"+ArrayBusqueda[i].Fecha_Expulsion+"'), recogerCod(this.value)");
+		let label = document.createElement("label");
+		label.setAttribute("for", i);
+		let out = document.createElement("div");
+		out.setAttribute("class", "outsiderb");
+		let dentro = document.createElement("div");
+		dentro.setAttribute("class", "insiderb");
+		out.appendChild(dentro);
+		label.appendChild(out);
+		td.appendChild(boton);
+		td.appendChild(label);
+		td.setAttribute("class", "boton");
+		tr.appendChild(td);
 
-	td=document.createElement('td');
-	td.innerHTML=ArrayBusqueda[i].NombreAsig;
-	td.setAttribute("class", "celda");
-	tr.appendChild(td);
-
-	td=document.createElement('td');
-	td.innerHTML="pepe";
-	td.setAttribute("class", "celda");
-	tr.appendChild(td);
-
-	td=document.createElement('td');
-	td.innerHTML=ArrayBusqueda[i].descripcion;
-	td.setAttribute("class", "celda");
-	tr.appendChild(td);
-
-	td=document.createElement('td');
-	boton=document.createElement('input');
-	boton.setAttribute("type","radio");
-	boton.setAttribute("id",i);
-	boton.setAttribute("name","RBFirma");
-	boton.setAttribute("value",ArrayBusqueda[i].CodExpulsiones);
-	boton.setAttribute("onclick","aplicarFecha('"+ArrayBusqueda[i].Fecha_Expulsion+"'), recogerCod(this.value)");
-	label=document.createElement("label");
-	label.setAttribute("for",i);
-	out=document.createElement("div");
-	out.setAttribute("class","outsiderb");
-	dentro=document.createElement("div");
-	dentro.setAttribute("class","insiderb");
-	out.appendChild(dentro);
-	label.appendChild(out);
-	td.appendChild(boton);
-	td.appendChild(label);
-	td.setAttribute("class", "boton");
-	tr.appendChild(td);
-
-	tabla.appendChild(tr);
+		tabla.appendChild(tr);
 	}
 
 	document.getElementById("contenedorTabla").appendChild(tabla);
 }
 
 const clearTable = () => {
-	if(document.getElementById("contenedorTabla").hasChildNodes()) {
-		document.getElementById("contenedorTabla").removeChild(document.getElementById("table"));
+	let tabla = document.getElementById("contenedorTabla");
+	if(tabla.hasChildNodes()) {
+		tabla.removeChild(document.getElementById("table"));
 	}
+}
+
+const crearTd = ( q, obj ) => {
+	let td = document.createElement('td');
+	td.innerHTML = q;
+	td.setAttribute("class", "celda");
+	obj.appendChild(td);
 }
