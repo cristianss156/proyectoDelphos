@@ -28,18 +28,18 @@ var V_dni;
 si la respuesta es correcta se llama a una funcion concreta dependiendo de si se quiere 
 firma una amonestacion o una expulsion */
 function recibirBusqueda( response ){
-	if(response === "Sin resultado") {
+	//if(response === "Sin resultado") {
+		if(response === 0) {
 		clearTable();
 		document.getElementById("fech_firma").min = "";
 		document.getElementById("fech_firma").value = "";
 		mensaje("No se han encontrado datos que coincidan con tu busqueda");
 	} else {
-		let datosBusqueda = [];
-		datosBusqueda = JSON.parse(response);
+		let respuesta = JSON.parse(response);
 		if(tipoBusqueda === "amonestaciones") {
-			formatearBusqueda(datosBusqueda);
+			formatearBusqueda(respuesta);
 		} else if(tipoBusqueda === "expulsiones") {
-			formatearBusquedaExpulsiones(datosBusqueda);
+			formatearBusquedaExpulsiones(respuesta);
 		}
 	}
 }
@@ -55,26 +55,19 @@ function formatearBusqueda( ArrayBusqueda ){
 		var tr = document.createElement('tr');
 
 		crearTd(V_dni, tr);
-		crearTd(ArrayBusqueda[i].Nombre, tr);
-		crearTd(ArrayBusqueda[i].NombreAsig, tr);
+		crearTd(ArrayBusqueda[i]["Nombre"], tr);
+		crearTd(ArrayBusqueda[i]["NombreAsig"], tr);
 		crearTd("Pepe", tr);
-		crearTd(ArrayBusqueda[i].descripcion, tr);
+		crearTd(ArrayBusqueda[i]["descripcion"], tr);
 
 		let td = document.createElement('td');
 		let boton = document.createElement('input');
 		boton.setAttribute("type", "radio");
 		boton.setAttribute("id", i);
 		boton.setAttribute("name", "RBFirma");
-		boton.setAttribute("value", ArrayBusqueda[i].CodAmonestacion);
-		boton.setAttribute("onclick", "aplicarFecha('"+ArrayBusqueda[i].Fecha_Amonestacion+"'), recogerCod(this.value)");
-		let label = document.createElement("label");
-		label.setAttribute("for", i);
-		let out = document.createElement("div");
-		out.setAttribute("class", "outsiderb");
-		let dentro = document.createElement("div");
-		dentro.setAttribute("class","insiderb");
-		out.appendChild(dentro);
-		label.appendChild(out);
+		boton.setAttribute("value", ArrayBusqueda[i]["CodAmonestacion"]);
+		boton.setAttribute("onclick", "aplicarFecha('"+ArrayBusqueda[i]["Fecha_Amonestacion"]+"'), recogerCod(this.value)");
+		let label = crearRB(i);
 		td.appendChild(boton);
 		td.appendChild(label);
 		td.setAttribute("class", "boton");
@@ -109,14 +102,7 @@ function formatearBusquedaExpulsiones(ArrayBusqueda){
 		boton.setAttribute("name", "RBFirma");
 		boton.setAttribute("value", ArrayBusqueda[i].CodExpulsiones);
 		boton.setAttribute("onclick", "aplicarFecha('"+ArrayBusqueda[i].Fecha_Expulsion+"'), recogerCod(this.value)");
-		let label = document.createElement("label");
-		label.setAttribute("for", i);
-		let out = document.createElement("div");
-		out.setAttribute("class", "outsiderb");
-		let dentro = document.createElement("div");
-		dentro.setAttribute("class", "insiderb");
-		out.appendChild(dentro);
-		label.appendChild(out);
+		let label = crearRB(i);
 		td.appendChild(boton);
 		td.appendChild(label);
 		td.setAttribute("class", "boton");
@@ -140,4 +126,16 @@ const crearTd = ( q, obj ) => {
 	td.innerHTML = q;
 	td.setAttribute("class", "celda");
 	obj.appendChild(td);
+}
+
+const crearRB = ( id ) => {
+	let label = document.createElement("label");
+	label.setAttribute("for", id);
+	let out = document.createElement("div");
+	out.setAttribute("class", "outsiderb");
+	let dentro = document.createElement("div");
+	dentro.setAttribute("class", "insiderb");
+	out.appendChild(dentro);
+	label.appendChild(out);
+	return label;
 }
