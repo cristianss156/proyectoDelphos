@@ -1,4 +1,5 @@
 <?php
+	
 	require_once('conexionBD.php');
 
 	$datosBusqueda = $_REQUEST["datosBusqueda"];
@@ -18,4 +19,5 @@
 		}
 		echo json_encode($resultado);
 	} else { echo 0; }
+
 ?>

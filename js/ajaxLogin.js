@@ -54,7 +54,7 @@ function recibirDatosLogin( response ) {
 }
 
 // Funcion que comprueba si el login es correcto
-function recibirResultadoLogin( response ){
+function recibirResultadoLogin( response ) {
 	let mostrar = "";
 	
 	if(response === "Sin resultado") {

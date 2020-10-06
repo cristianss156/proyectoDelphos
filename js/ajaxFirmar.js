@@ -27,8 +27,7 @@ var V_dni;
 /* funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion,
 si la respuesta es correcta se llama a una funcion concreta dependiendo de si se quiere 
 firma una amonestacion o una expulsion */
-function recibirBusqueda( response ){
-	//if(response === "Sin resultado") {
+function recibirBusqueda( response ) {
 		if(response === 0) {
 		clearTable();
 		document.getElementById("fech_firma").min = "";
@@ -45,7 +44,7 @@ function recibirBusqueda( response ){
 }
 
 // funcion que formatea los datos de las amonestaciones en una tabla
-function formatearBusqueda( ArrayBusqueda ){
+function formatearBusqueda( ArrayBusqueda ) {
 	clearTable();
 
 	var tabla = document.createElement('table');
@@ -80,13 +79,13 @@ function formatearBusqueda( ArrayBusqueda ){
 }
 
 //funcion que formatea los datos de las expulsiones en una tabla
-function formatearBusquedaExpulsiones(ArrayBusqueda){
+function formatearBusquedaExpulsiones( ArrayBusqueda ) {
 	clearTable();
 
 	var tabla = document.createElement('table');
 	tabla.setAttribute("id", "table");
 
-	for(let i in ArrayBusqueda){
+	for(let i in ArrayBusqueda) {
 		var tr = document.createElement('tr');
 
 		crearTd(V_dni, tr);
