@@ -3,8 +3,8 @@ import { serverCall, rutaPhp, mensaje } from "./module/functions.js";
 var tipoBusqueda;
 var V_dni;
 
-/* funcion que recibe el dni del alumno y el tipo de busqueda que hay que hacer (amonestaciones o expulsiones)
- y realiza la busqueda */
+/* Funcion que recibe el dni del alumno y el tipo de busqueda que hay que hacer (amonestaciones o expulsiones)
+	y realiza la busqueda */
  var inputs = document.getElementsByClassName("filtro");
  for (let i = 0; i < inputs.length; i++) {
  	inputs[i].addEventListener("click", function() {
@@ -24,9 +24,9 @@ var V_dni;
 	 })
  };
 
-/* funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion,
-si la respuesta es correcta se llama a una funcion concreta dependiendo de si se quiere 
-firma una amonestacion o una expulsion */
+/* Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion,
+	si la respuesta es correcta se llama a una funcion concreta dependiendo de si se quiere
+	firma una amonestacion o una expulsion */
 function recibirBusqueda( response ) {
 		if(response === 0) {
 		clearTable();
@@ -43,7 +43,7 @@ function recibirBusqueda( response ) {
 	}
 }
 
-// funcion que formatea los datos de las amonestaciones en una tabla
+// Funcion que formatea los datos de las amonestaciones en una tabla
 function formatearBusqueda( ArrayBusqueda ) {
 	clearTable();
 
@@ -78,7 +78,7 @@ function formatearBusqueda( ArrayBusqueda ) {
 	document.getElementById("contenedorTabla").appendChild(tabla);
 }
 
-//funcion que formatea los datos de las expulsiones en una tabla
+// Funcion que formatea los datos de las expulsiones en una tabla
 function formatearBusquedaExpulsiones( ArrayBusqueda ) {
 	clearTable();
 
@@ -113,6 +113,7 @@ function formatearBusquedaExpulsiones( ArrayBusqueda ) {
 	document.getElementById("contenedorTabla").appendChild(tabla);
 }
 
+// Funcion que vacia el elemento con ID "contenedorTabla"
 const clearTable = () => {
 	let tabla = document.getElementById("contenedorTabla");
 	if(tabla.hasChildNodes()) {
@@ -120,6 +121,7 @@ const clearTable = () => {
 	}
 }
 
+// Funcion que crea un td con contenido y lo inserta en el elemento pasado
 const crearTd = ( q, obj ) => {
 	let td = document.createElement('td');
 	td.innerHTML = q;
@@ -127,6 +129,7 @@ const crearTd = ( q, obj ) => {
 	obj.appendChild(td);
 }
 
+// Funcion que crea un radio button presonalizado y lo devuelve
 const crearRB = ( id ) => {
 	let label = document.createElement("label");
 	label.setAttribute("for", id);

@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="theme-color" content="#303F9F">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/styleListados.css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/scriptAnimaciones.js"></script>
-	<script type="module" src="js/ajaxListados.js"></script>
-	<script type="text/javascript" src="js/imprimir.js"></script>
-	<link rel="icon" type="image/png" href="imagenes/logoDelphos.png">
-	<title>DELPHOS - Listados</title>
-</head>
-<body>
-	<!--cabecera de la pagina-->
-	<header>
-		<div id="mostrar">
-			<span id="burger" class="material-icons md-24">menu</span>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="theme-color" content="#303F9F">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/styleListados.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/scriptAnimaciones.js"></script>
+		<script type="module" src="js/ajaxListados.js"></script>
+		<link rel="icon" type="image/png" href="imagenes/logoDelphos.png">
+		<title>DELPHOS - Listados</title>
+	</head>
+	<body>
+		<!--cabecera de la pagina-->
+		<header>
+			<div id="mostrar">
+				<span id="burger" class="material-icons md-24">menu</span>
+			</div>
+			<span id="titulo">Listados</span>
+			<div id="userLog">
+				<span id="inicialLog"></span>
+			</div>
+		</header>
+		<div id="listOptions">
+			<span id="salir">Cerrar sesion</span>
 		</div>
-		<span id="titulo">Listados</span>
-		<div id="userLog">
-			<span id="inicialLog"></span>
-		</div>
-	</header>
-	<div id="listOptions">
-		<span id="salir">Cerrar sesion</span>
-	</div>
-	<!--section que contiene el menu lateral con los enlaces a los distintas secciones de la aplicación y otros enlaces externos-->
-	<section id="fondoMenu">
+		<!--section que contiene el menu lateral con los enlaces a los distintas secciones de la aplicación y otros enlaces externos-->
+		<section id="fondoMenu">
 			<nav id="menu">
 				<div id="imagen">
 					<img src="imagenes/FORMSF14.gif">
@@ -84,97 +83,97 @@
 					</a>
 				</div>
 			</nav>
-	</section>
-	<!--section que contiene los tipos de listados que se pueden obtener-->
-	<section id="contenidoListados">
-		<div id="formularioListados">
-			<div id="filtrosListados">
-				<label>Listar por:</label>
-				<br><br>
-				<input id="filtro_uno"onclick="mostrarBuscar()" class="filtro" type="radio" name="tipo_filtro">
-            	<label for="filtro_uno">
-                	<div class="outsiderb">
-                    	<div class="insiderb"></div>
-	                </div> Amonestaciones y expulsiones por alumno
-            	</label>
-				<br>
-				<div id="AmoExpAlumn">
-					<br>
-					<label>Dni:</label>
-					<input id="dniAlumn" type="text" maxlength="9">
-					<input id="buscarAmoExpAlumn" type="button" onclick="buscarAmoExp(dniAlumn.value)" value="buscar">
+		</section>
+		<!--section que contiene los tipos de listados que se pueden obtener-->
+		<section id="contenidoListados">
+			<div id="formularioListados">
+				<div id="filtrosListados">
+					<label>Listar por:</label>
 					<br><br>
-				</div>
-				<input id="filtro_dos" onclick="alumnosSinFirma(), mostrarBuscar()" class="filtro" type="radio" name="tipo_filtro">
-            	<label for="filtro_dos">
-                	<div class="outsiderb">
-                    	<div class="insiderb"></div>
-	                </div> Alumnos sin firma
-            	</label>
-            	<br>
-				<input id="filtro_tres" onclick="mostrarBuscar()" class="filtro" type="radio" name="tipo_filtro">
-            	<label for="filtro_tres">
-                	<div class="outsiderb">
-                    	<div class="insiderb"></div>
-	                </div> Amonestaciones por profesor
-            	</label>
-            	<br>
-            	<div id="AmoProf">
+					<input id="filtro_uno" onclick="mostrarBuscar()" class="filtro" type="radio" name="tipo_filtro">
+	      	<label for="filtro_uno">
+	        	<div class="outsiderb">
+	            <div class="insiderb"></div>
+	          </div> Amonestaciones y expulsiones por alumno
+	      	</label>
 					<br>
-					<label>Profesor:</label>
-					<select id="codProf">
-						<option></option>
-					</select>
-					<input id="buscarAmoProf" type="button" onclick="amoProfesor(codProf.value)" value="buscar">
-					<br><br>
-				</div>
-				<input id="filtro_cuatro" onclick="mostrarBuscar()" class="filtro" type="radio" name="tipo_filtro">
-            	<label for="filtro_cuatro">
-                	<div class="outsiderb">
-                    	<div class="insiderb"></div>
-	                </div> Amonestaciones y expulsiones por grupo
-            	</label>
-            	<br>
-            	<div id="AmoExpGrp">
-					<br>
-					<label>Curso:</label>
-					<select id="codGrp">
-						<option></option>
-					</select>
-					<input id="buscarAmoExpGrp" type="button" onclick="amoExpGrp(codGrp.value)" value="buscar">
-					<br><br>
-				</div>
-				<input id="filtro_cinco" onclick="profesoresAmoTotal(), mostrarBuscar()" class="filtro" type="radio" name="tipo_filtro">
-            	<label for="filtro_cinco">
-                	<div class="outsiderb">
-                    	<div class="insiderb"></div>
-	                </div> Total de amonestaciones de profesores
-            	</label>
-				<br><br><br>
-			</div>
-		</div>
-		<!--div que contiene las listas obtenidas del servidor y las opciones de imprimir o mostrar en PDF esas listas-->
-		<div id="contenedorListas">
-			<div id="Listas"></div>
-			<div id="contentPrint">
-				<div id="imgPrint">
-					<img src="imagenes/print.png">
-				</div>
-				<div class="print">
-					<span onclick="imprimir()">Imprimir</span>
-				</div>
-				<div class="print">
-					<span>Imprimir PDF</span>
+					<div id="AmoExpAlumn">
+						<br>
+						<label>Dni:</label>
+						<input id="dniAlumn" type="text" maxlength="9">
+						<input id="buscarAmoExpAlumn" type="button" value="buscar">
+						<br><br>
+					</div>
+					<input id="filtro_dos" onclick="mostrarBuscar()" class="filtro" type="radio" name="tipo_filtro">
+	      	<label for="filtro_dos">
+	        	<div class="outsiderb">
+	          	<div class="insiderb"></div>
+	          </div> Alumnos sin firma
+	      	</label>
+	      	<br>
+					<input id="filtro_tres" onclick="mostrarBuscar()" class="filtro" type="radio" name="tipo_filtro">
+	      	<label for="filtro_tres">
+	        	<div class="outsiderb">
+	          	<div class="insiderb"></div>
+	          </div> Amonestaciones por profesor
+	      	</label>
+	      	<br>
+	        	<div id="AmoProf">
+							<br>
+							<label>Profesor:</label>
+							<select id="codProf">
+								<option></option>
+							</select>
+							<input id="buscarAmoProf" type="button" value="buscar">
+							<br><br>
+						</div>
+					<input id="filtro_cuatro" onclick="mostrarBuscar()" class="filtro" type="radio" name="tipo_filtro">
+	      	<label for="filtro_cuatro">
+	        	<div class="outsiderb">
+	          	<div class="insiderb"></div>
+	          </div> Amonestaciones y expulsiones por grupo
+	      	</label>
+	      	<br>
+	      	<div id="AmoExpGrp">
+						<br>
+						<label>Curso:</label>
+						<select id="codGrp">
+							<option></option>
+						</select>
+						<input id="buscarAmoExpGrp" type="button" value="buscar">
+						<br><br>
+					</div>
+					<input id="filtro_cinco" onclick="mostrarBuscar()" class="filtro" type="radio" name="tipo_filtro">
+	      	<label for="filtro_cinco">
+	        	<div class="outsiderb">
+	          	<div class="insiderb"></div>
+	          </div> Total de amonestaciones de profesores
+	      	</label>
+					<br><br><br>
 				</div>
 			</div>
-		</div>
-	</section>
-	<!--section que contiene la estructura que muestra distintos mensajes a lo largo de la aplicación-->
-	<section id="mensaje_info">
-		<div id="informacion">
-			<span id="mensaje"></span>
-			<button id="aceptar_mensaje">Aceptar</button>
-		</div>
-	</section>
-</body>
+			<!--div que contiene las listas obtenidas del servidor y las opciones de imprimir o mostrar en PDF esas listas-->
+			<div id="contenedorListas">
+				<div id="Listas"></div>
+				<div id="contentPrint">
+					<div id="imgPrint">
+						<img src="imagenes/print.png">
+					</div>
+					<div class="print">
+						<span id="btnImprimir">Imprimir</span>
+					</div>
+					<div class="print">
+						<span>Imprimir PDF</span>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--section que contiene la estructura que muestra distintos mensajes a lo largo de la aplicación-->
+		<section id="mensaje_info">
+			<div id="informacion">
+				<span id="mensaje"></span>
+				<button id="aceptar_mensaje">Aceptar</button>
+			</div>
+		</section>
+	</body>
 </html>

@@ -12,109 +12,103 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Funcion que recoge el codigo de la expulsion o amonestacion sobre la que se va a trabajar
-function recogerCod( _codigo ) {
-	_cod = _codigo;
-}
+var recogerCod = ( _codigo ) => _cod = _codigo;
 
 // Funcion que recoge si hay que firmar una amonestacion o una expulsion
-function recogerTipo( _tipoFirma ) {
-	_tipo = _tipoFirma;
-}
+var recogerTipo = ( _tipoFirma ) =>	_tipo = _tipoFirma;
 
-//funcion que recoge el dni del alumno para utilizarlo en las distintas funciones
-function recogerDNI( _dni ) {
-	v_dni = _dni;
-}
+// Funcion que recoge el dni del alumno para utilizarlo en las distintas funciones
+var recogerDNI = ( _dni ) => v_dni = _dni;
 
-//funcion que recibe los datos que se necesitan para grabar una amonestacion
-function amonestar( _curso, _alumno, _fecha, _hora, _asignatura, _causa ) {
+// Funcion que recibe los datos que se necesitan para grabar una amonestacion
+document.getElementById("amonestar").addEventListener("click", function() {
 	var datosAmonestacion = {
-		curso: _curso,
+		curso: document.getElementById("Curso").value,
 		profesor: usuario,
-		alumno: _alumno,
-		fecha: _fecha,
-		hora: _hora,
-		asignatura: _asignatura,
-		causa:_causa
+		alumno: document.getElementById("alumno").value,
+		fecha: document.getElementById("fecha_amo").value,
+		hora: document.getElementById("hora_amo").value,
+		asignatura: document.getElementById("asignatura").value,
+		causa:document.getElementById("causa_amo").value
 	};
 
 	var jsonstring = JSON.stringify(datosAmonestacion);
 	let ruta = rutaPhp + "amonestar.php?datosAmonestacion=" + jsonstring;
 	serverCall(ruta, recibirResultadoAmonestacion);
-}
+});
 
-//funcion que recibe los datos que se necesitan para grabar una expulsion
-function expulsar( _curso, _alumno, _fecha, _hora, _asignatura, _causa ) {
+// Funcion que recibe los datos que se necesitan para grabar una expulsion
+document.getElementById("expulsar").addEventListener("click", function() {
 	var datosExpulsion = {
-		curso: _curso,
+		curso: document.getElementById("Curso_Exp").value,
 		profesor: usuario,
-		alumno: _alumno,
-		fecha: _fecha,
-		hora: _hora,
-		asignatura: _asignatura,
-		causa: _causa,
+		alumno: document.getElementById("alumno_Exp").value,
+		fecha: document.getElementById("fecha_exp").value,
+		hora: document.getElementById("hora_exp").value,
+		asignatura: document.getElementById("asignatura_exp").value,
+		causa: document.getElementById("causa_exp").value,
 		tipo: "normal"
 	};
 
 	var jsonstring = JSON.stringify(datosExpulsion);
 	let ruta = rutaPhp + "expulsar.php?datosExpulsion=" + jsonstring;
 	serverCall(ruta, recibirResultadoExpulsion);
-}
+});
 
-//funcion que recibe los datos que se necesitan para grabar una expulsion directa con sancion
-function expulsarSancion( _curso, _alumno, _fecha, _hora, _asignatura, _causa ) {
+// Funcion que recibe los datos que se necesitan para grabar una expulsion directa con sancion
+document.getElementById("expulsarSancion").addEventListener("click", function() {
 	var datosExpulsion = {
-		curso: _curso,
+		curso: document.getElementById("Curso_Exp").value,
 		profesor: usuario,
-		alumno: _alumno,
-		fecha: _fecha,
-		hora: _hora,
-		asignatura: _asignatura,
-		causa: _causa,
+		alumno: document.getElementById("alumno_Exp").value,
+		fecha: document.getElementById("fecha_exp").value,
+		hora: document.getElementById("hora_exp").value,
+		asignatura: document.getElementById("asignatura_exp").value,
+		causa: document.getElementById("causa_exp").value,
 		tipo: "SancionDirecta"
 	};
 
 	var jsonstring = JSON.stringify(datosExpulsion);
 	let ruta = rutaPhp + "expulsar.php?datosExpulsion=" + jsonstring;
 	serverCall(ruta, recibirResultadoExpulsion);
-}
+});
 
-//funcion que recibe los datos que se necesitan para grabar la firma de una expulsion o una amonestacion
-function firmar( _fecha ) {
+// Funcion que recibe los datos que se necesitan para grabar la firma de una expulsion o una amonestacion
+document.getElementById("firmar").addEventListener("click", function() {
 	var datosFirma = {
 		codigo: _cod,
-		fecha: _fecha,
+		fecha: document.getElementById("fech_firma").value,
 		tipo: _tipo
 	};
 
 	var jsonstring = JSON.stringify(datosFirma);
 	let ruta = rutaPhp + "firmar.php?datosFirma=" + jsonstring;
 	serverCall(ruta, recibirResultadoFirma);
-}
+});
 
-//funcion que recibe los datos que se necesitan para grabar una sancion
-function sancionar( _fecha, _sancion ) {
+// Funcion que recibe los datos que se necesitan para grabar una sancion
+document.getElementById("sancionar").addEventListener("click", function() {
 	var datosSancion = {
 		codigo: _cod,
 		profesor: usuario,
-		fecha: _fecha,
+		fecha: document.getElementById("fech_Sancion").value,
 		alumno: v_dni,
-		sancion: _sancion
+		sancion: document.getElementById("nueva_Sancion").value
 	};
 
 	var jsonstring = JSON.stringify(datosSancion);
 	let ruta = rutaPhp + "sancionar.php?datosSancion=" + jsonstring;
 	serverCall(ruta, recibirResultadoSancion);
-}
+});
 
-//funcion llamada por "compruebaSesion()" que recoge los datos del servidor y guarda en la variable global "usuario"
-//el codigo del usuario para poder usarlo en el resto de funciones
+/* Funcion llamada por "compruebaSesion()" que recoge los datos del servidor y guarda en la variable global "usuario"
+	el codigo del usuario para poder usarlo en el resto de funciones */
 function recibirDatosLogin( response ) {
 	let profesor = JSON.parse(response);
 	usuario = profesor[0];
 }
 
-//funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras amonestar
+// Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras amonestar
 function recibirResultadoAmonestacion( response ) {
 	if(response === "Error al insertar.") {
 		mensaje("Error al registrar la amonestación");
@@ -123,7 +117,7 @@ function recibirResultadoAmonestacion( response ) {
 	}
 }
 
-//funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras expulsar
+// Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras expulsar
 function recibirResultadoExpulsion( response ) {
 	if(reponse === "Error al insertar.") {
 		mensaje("Error al registrar la expulsión");
@@ -132,7 +126,7 @@ function recibirResultadoExpulsion( response ) {
 	}	
 }
 
-//funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras firmar
+// Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras firmar
 function recibirResultadoFirma( response ) {
 	if(reponse === "0") {
 		mensaje("Error al registrar la firma");
@@ -142,7 +136,7 @@ function recibirResultadoFirma( response ) {
 	}
 }
 
-//funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras sancionar
+// Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras sancionar
 function recibirResultadoSancion( response ) {
 	if(response === "0") {
 		mensaje("Error al registrar la sanción");
@@ -153,6 +147,7 @@ function recibirResultadoSancion( response ) {
 	}
 }
 
+// Funcion que vacia el elemento con ID indicado por parametro
 const limpiarTabla = ( id ) => {
 	if(document.getElementById(id).hasChildNodes()) {
 			document.getElementById(id).removeChild(document.getElementById("table"));

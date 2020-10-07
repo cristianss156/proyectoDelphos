@@ -30,4 +30,13 @@ const mensaje = ( str ) => {
 	document.getElementById("mensaje_info").style.display = "block";
 };
 
-export { serverCall, rutaPhp, mensaje };
+const imprimir = () => {
+	var ficha = document.getElementById("Listas");
+	var ventimp = window.open(' ', 'popimpr');
+	ventimp.document.write(ficha.innerHTML);
+	ventimp.document.close();
+	ventimp.print();
+	ventimp.close();
+}
+
+export { serverCall, rutaPhp, mensaje, imprimir };

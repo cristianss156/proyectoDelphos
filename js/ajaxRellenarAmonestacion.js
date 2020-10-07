@@ -1,26 +1,14 @@
 import { serverCall, rutaPhp, mensaje } from "./module/functions.js";
 
-var objAjax;
 var curso;
 
-function crearAjax(){
-	if(window.XMLHttpRequest){
-		objAjax=new XMLHttpRequest();
-	}
-	else{
-		objAjax = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-}
-
-//funcion que cierra la sesion del usuario actual
-function salir(){
-	crearAjax();
-
-	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/cerrarSesion.php", true);
-	objAjax.send();
+// Evento click que cierra la sesion de php
+document.getElementById("salir").addEventListener("click", function() {
+	let ruta = rutaPhp + "cerrarSesion.php";
+	serverCall(ruta);
 
 	location.href = "index.html";
-}
+});
 
 // Evento que recoge los datos de la sesion de php al finalizar la carga de gestion.html
 document.addEventListener("DOMContentLoaded", function() {
@@ -28,55 +16,43 @@ document.addEventListener("DOMContentLoaded", function() {
 	serverCall(ruta, recibirDatosLoginGeneral);
 });
 
-//funcion que se encarga de rellenar el select con los cursos
-function rellenarCursos(){
-	crearAjax();
-	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarCursos.php", true);
-	objAjax.send();
-	objAjax.onreadystatechange=recibirCursos;
+// Funcion que se encarga de rellenar el select con los cursos
+function rellenarCursos() {
+	let ruta = rutaPhp + "listarCursos.php";
+	serverCall(ruta, recibirCursos);
 }
 
-//funcion que se encarga de rellenar el select con los alumnos en funcion del curso que recibe como parametro
-function rellenarAlumnos(_curso){
-	curso=_curso;
-	crearAjax();
-	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarAlumnos.php?curso="+_curso, true);
-	objAjax.send();
-	objAjax.onreadystatechange=recibirAlumnos;
+// Funcion que se encarga de rellenar el select con los alumnos en funcion del curso que recibe como parametro
+document.getElementById("Curso").addEventListener("change", function() {
+	curso = this.value;
+	let ruta = rutaPhp + "listarAlumnos.php?curso=" + curso;
+	serverCall(ruta, recibirAlumnos);
+});
+
+// Funcion que se encarga de rellenar el select con las asignaturas en funcion del curso que recibe como parametro
+function rellenarAsignaturas( _curso ) {
+	let ruta = rutaPhp + "listarAsignaturas.php?curso=" + _curso;
+	serverCall(ruta, recibirAsignaturas);
 }
 
-//funcion que se encarga de rellenar el select con las asignaturas en funcion del curso que recibe como parametro
-function rellenarAsignaturas(_curso){
-	crearAjax();
-	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarAsignaturas.php?curso="+_curso, true);
-	objAjax.send();
-	objAjax.onreadystatechange=recibirAsignaturas;
+// Funcion que se encarga de rellenar el select con las causas de amonestacion
+function rellenarCausasAmonestacion() {
+	let ruta = rutaPhp + "listarCausasAmonestacion.php";
+	serverCall(ruta, recibirCausasAmonestacion);
 }
 
-//funcion que se encarga de rellenar el select con las causas de amonestacion
-function rellenarCausasAmonestacion(){
-	crearAjax();
-	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/listarCausasAmonestacion.php", true);
-	objAjax.send();
-	objAjax.onreadystatechange=recibirCausasAmonestacion;
-}
-
-//funcion que se encarga de guardar en la base de datos una nueva causa de amonestacion
-function crearCausaAmonestacion(nuevaCausaAmo){
-	if(nuevaCausaAmo===""){
-		document.getElementById("mensaje").innerHTML="";
-		document.getElementById("mensaje").innerHTML="Introduce una nueva causa de amonestación";
-		document.getElementById("mensaje_info").style.display="block";
+// Funcion que se encarga de guardar en la base de datos una nueva causa de amonestacion
+document.getElementById("crearAmo").addEventListener("click", function() {
+	var nuevaCausaAmo = document.getElementById("nueva_Amonestacion").value;
+	if(nuevaCausaAmo === "") {
+		mensaje("Introduce una nueva causa de amonestación");
+	}	else {
+		let ruta = rutaPhp + "crearCausaAmonestacion.php?causa=" + nuevaCausaAmo;
+		serverCall(ruta, recibirNuevaAmonestacion);
 	}
-	else{
-		crearAjax();
-		objAjax.open("GET","http://localhost/html/proyectoDelphos/php/crearCausaAmonestacion.php?causa="+nuevaCausaAmo, true);
-		objAjax.send();
-		objAjax.onreadystatechange=recibirNuevaAmonestacion;
-	}
-}
+});
 
-// funcion que comprueba que si hay algun usuario logeado al recagar la pagina
+// Funcion que comprueba que si hay algun usuario logeado al recagar la pagina
 function recibirDatosLoginGeneral( response ) {
 	var profesor=[];
 			
@@ -98,58 +74,42 @@ function recibirDatosLoginGeneral( response ) {
 	rellenarCursos();
 }
 
-//funcion que comprueba la respuesta del servidor al consultar los cursos
-function recibirCursos(){
-	if(objAjax.readyState === 4 && objAjax.status === 200){
-		var datosCursos=[];
-		datosCursos=JSON.parse(objAjax.responseText);
-		formatearCursos(datosCursos);
-	}
+// Funcion que comprueba la respuesta del servidor al consultar los cursos
+function recibirCursos( response ) {
+	let datosCursos = JSON.parse(response);
+	formatearCursos(datosCursos);
 }
 
-//funcion que comprueba la respuesta del servidor al consultar los alumnos
-function recibirAlumnos(){
-	if(objAjax.readyState === 4 && objAjax.status === 200){
-		var datosAlumnos=[];
-		datosAlumnos=JSON.parse(objAjax.responseText);
-		formatearAlumnos(datosAlumnos);
-	}
+// Funcion que comprueba la respuesta del servidor al consultar los alumnos
+function recibirAlumnos( response ) {
+	let datosAlumnos = JSON.parse(response);
+	formatearAlumnos(datosAlumnos);
 }
 
-//funcion que comprueba la respuesta del servidor al consultar las asignaturas
-function recibirAsignaturas(){
-	if(objAjax.readyState === 4 && objAjax.status === 200){
-		var datosAsignaturas=[];
-		datosAsignaturas=JSON.parse(objAjax.responseText);
-		formatearAsignaturas(datosAsignaturas);
-	}
+// Funcion que comprueba la respuesta del servidor al consultar las asignaturas
+function recibirAsignaturas( response ) {
+	let datosAsignaturas = JSON.parse(response);
+	formatearAsignaturas(datosAsignaturas);
 }
 
-//funcion que comprueba la respuesta del servidor al consultar las causas de amonestacion
-function recibirCausasAmonestacion(){
-	if(objAjax.readyState === 4 && objAjax.status === 200){
-		var datosAmonestaciones=[];
-		datosAmonestaciones=JSON.parse(objAjax.responseText);
-		formatearCausasAmonestacion(datosAmonestaciones);
-	}
+// Funcion que comprueba la respuesta del servidor al consultar las causas de amonestacion
+function recibirCausasAmonestacion( response ) {
+	let datosAmonestaciones = JSON.parse(response);
+	formatearCausasAmonestacion(datosAmonestaciones);
 }
 
-//funcion que comprueba la respuesta del servidor al crear una nueva causa de amonestacion
-function recibirNuevaAmonestacion(){
-	if(objAjax.readyState === 4 && objAjax.status === 200){
-		document.getElementById("mensaje").innerHTML="";
-		document.getElementById("mensaje").innerHTML="Vuelve a habilitar las causas para elegir la nueva causa";
-		document.getElementById("mensaje_info").style.display="block";
-		document.getElementById("nueva_Amonestacion").value="";
-		rellenarCausasAmonestacion();
-	}	
+// Funcion que comprueba la respuesta del servidor al crear una nueva causa de amonestacion
+function recibirNuevaAmonestacion( response ) {
+	mensaje("Vuelve a habilitar las causas para elegir la nueva causa");
+	document.getElementById("nueva_Amonestacion").value = "";
+	rellenarCausasAmonestacion();
 }
 
-//funcion que formatea los datos de los cursos en el select correspondiente
-function formatearCursos( ArrayCursos ){
-	var select=document.getElementById('Curso');
+// Funcion que formatea los datos de los cursos en el select correspondiente
+function formatearCursos( ArrayCursos ) {
+	var select = document.getElementById('Curso');
 
-	for(var i in ArrayCursos){
+	for(let i in ArrayCursos) {
 		let option = document.createElement("option");
 		option.value = ArrayCursos[i].CodCurso;
 		option.innerHTML = ArrayCursos[i].CodCurso;
@@ -159,11 +119,11 @@ function formatearCursos( ArrayCursos ){
 	rellenarCausasAmonestacion();
 }
 
-//funcion que formatea los datos de los alumnos en el select correspondiente
+// Funcion que formatea los datos de los alumnos en el select correspondiente
 function formatearAlumnos( ArrayAlumnos ) {
-	let select = crearSelect("alumno");
+	var select = crearSelect("alumno");
 
-	for(var i in ArrayAlumnos) {
+	for(let i in ArrayAlumnos) {
 		let option = document.createElement("option");
 		option.value = ArrayAlumnos[i].DNI;
 		option.innerHTML = ArrayAlumnos[i].Nombre+" "+ArrayAlumnos[i].Apellidos;
@@ -173,24 +133,24 @@ function formatearAlumnos( ArrayAlumnos ) {
 	rellenarAsignaturas(curso);
 }
 
-//funcion que formatea los datos de las asignaturas en el select correspondiente
-function formatearAsignaturas(ArrayAsignaturas){
-	let select = crearSelect("asignatura");
+// Funcion que formatea los datos de las asignaturas en el select correspondiente
+function formatearAsignaturas( ArrayAsignaturas ) {
+	var select = crearSelect("asignatura");
 
-	for(var i in ArrayAsignaturas){
-		option=document.createElement("option");
-		option.value=ArrayAsignaturas[i].CodAsignatura;
-		option.innerHTML=ArrayAsignaturas[i].NombreAsig;
+	for(let i in ArrayAsignaturas) {
+		let option = document.createElement("option");
+		option.value = ArrayAsignaturas[i].CodAsignatura;
+		option.innerHTML = ArrayAsignaturas[i].NombreAsig;
 
 		select.appendChild(option);
 	}
 }
 
-//funcion que formatea los datos de las causas de amonestacion en el select correspondiente
-function formatearCausasAmonestacion( ArrayAmonestaciones ){
-	let select = crearSelect("causa_amo");
+// Funcion que formatea los datos de las causas de amonestacion en el select correspondiente
+function formatearCausasAmonestacion( ArrayAmonestaciones ) {
+	var select = crearSelect("causa_amo");
 
-	for(var i in ArrayAmonestaciones) {
+	for(let i in ArrayAmonestaciones) {
 		let option = document.createElement("option");
 		option.value = ArrayAmonestaciones[i].CodCausa_Amonestacion;
 		option.innerHTML = ArrayAmonestaciones[i].descripcion;
@@ -199,6 +159,7 @@ function formatearCausasAmonestacion( ArrayAmonestaciones ){
 	}
 }
 
+// Funcion que vacia el select con ID pasado por parametro, le añade un option vacio y lo devuelve
 const crearSelect = ( tipo ) => {
 	var select = document.getElementById(tipo);
 

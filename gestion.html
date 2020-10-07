@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="theme-color" content="#303F9F">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/styleGestion.css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/scriptAnimaciones.js"></script>
-	<script type="module" src="js/ajaxRellenarAmonestacion.js"></script>
-	<script type="text/javascript" src="js/ajaxRellenarExpulsion.js"></script>
-	<script type="module" src="js/ajaxFirmar.js"></script>
-	<script type="text/javascript" src="js/ajaxSancionar.js"></script>
-	<script type="text/javascript" src="js/ajaxInsertarDatos.js"></script>
-	<link rel="icon" type="image/png" href="imagenes/logoDelphos.png">
-	<title>DELPHOS - Gestión</title>
-</head>
-<body>
-	<!--cabecera de la pagina-->
-	<header>
-		<div id="mostrar">
-			<span id="burger" class="material-icons md-24">menu</span>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="theme-color" content="#303F9F">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/styleGestion.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/scriptAnimaciones.js"></script>
+		<script type="module" src="js/ajaxRellenarAmonestacion.js"></script>
+		<script type="module" src="js/ajaxRellenarExpulsion.js"></script>
+		<script type="module" src="js/ajaxFirmar.js"></script>
+		<script type="module" src="js/ajaxSancionar.js"></script>
+		<script type="module" src="js/ajaxInsertarDatos.js"></script>
+		<link rel="icon" type="image/png" href="imagenes/logoDelphos.png">
+		<title>DELPHOS - Gestión</title>
+	</head>
+	<body>
+		<!--cabecera de la pagina-->
+		<header>
+			<div id="mostrar">
+				<span id="burger" class="material-icons md-24">menu</span>
+			</div>
+			<span id="titulo">Gestión</span>
+			<div id="userLog">
+				<span id="inicialLog"></span>
+			</div>
+			
+			<!--nav que contiene las pestañas con las distintas opciones del apartado de gestión-->
+			<nav id="tabs">
+				<div id="amonestaciones" class="tabs">
+					<span>Amonestaciones</span>
+				</div>
+				<div id="expulsiones" class="tabs">
+					<span>Expulsiones</span>
+				</div>
+				<div id="sanciones" class="tabs" onclick="mostrarSanciones()">
+					<span>Sanciones</span>
+				</div>
+				<div id="firmas" class="tabs" onclick="mostrarFirmas()">
+					<span>Firmas</span>
+				</div>
+				<div id="indicador"></div>
+			</nav>
+		</header>
+		<div id="listOptions">
+			<span id="salir">Cerrar sesion</span>
 		</div>
-		<span id="titulo">Gestión</span>
-		<div id="userLog">
-			<span id="inicialLog"></span>
-		</div>
-		
-		<!--nav que contiene las pestañas con las distintas opciones del apartado de gestión-->
-		<nav id="tabs">
-			<div id="amonestaciones" class="tabs">
-				<span>Amonestaciones</span>
-			</div>
-			<div id="expulsiones" class="tabs" onclick="rellenarCursosExpulsion()">
-				<span>Expulsiones</span>
-			</div>
-			<div id="sanciones" class="tabs" onclick="mostrarSanciones()">
-				<span>Sanciones</span>
-			</div>
-			<div id="firmas" class="tabs" onclick="mostrarFirmas()">
-				<span>Firmas</span>
-			</div>
-			<div id="indicador"></div>
-		</nav>
-	</header>
-	<div id="listOptions">
-		<span id="salir">Cerrar sesion</span>
-	</div>
-	<!--section que contiene el menu lateral con los enlaces a los distintas secciones de la aplicación y otros enlaces externos-->
-	<section id="fondoMenu">
+		<!--section que contiene el menu lateral con los enlaces a los distintas secciones de la aplicación y otros enlaces externos-->
+		<section id="fondoMenu">
 			<nav id="menu">
 				<div id="imagen">
 					<img src="imagenes/FORMSF14.gif">
@@ -104,194 +104,193 @@
 					</a>
 				</div>
 			</nav>
-	</section>
-	<!--section que contiene el formulario para amonestar-->
-	<section id="contenidoAmonestaciones">
-		<div id="formularioAmonestaciones">
-			<label>Curso:</label>
-			<select id="Curso" onchange="rellenarAlumnos(this.value)">
-				<option></option>
-			</select>
-			<label id="label_alumno">Alumno:</label>
-			<select id="alumno">
-				<option></option>
-			</select>
-			<br><br><br>
-			<label>Fecha:</label>
-			<input id="fecha_amo" type="date">
-			<label id="label_hora_amo">Hora:</label>
-			<input id="hora_amo" type="time">
-			<br><br><br>
-			<label>Asignatura:</label>
-			<select id="asignatura">
-				<option></option>
-			</select>
-			<label id="label_causa_amo">Causa:</label>
-			<select id="causa_amo">
-				<option></option>
-			</select>
-			<br><br><br>
-			<input type="checkbox" id="nueva_causa">
-			<label for="nueva_causa">
-				<div class="outside">
-					<div class="inside">
-						<img class="check" src="imagenes/checked.png">
-					</div>
-				</div> Añadir una causa nueva
-			</label>
-			<br><br>
-			<div id="causa_amo_nueva">
-				<textarea id="nueva_Amonestacion" maxlength="100" placeholder="Escribe la nueva causa de amonestación"></textarea>
-				<br>
-				<input id="crearAmo" type="button" value="Crear" onclick="crearCausaAmonestacion(nueva_Amonestacion.value)">
-			</div>
-			<br><br>
-			<input id="amonestar" type="button" value="Amonestar" onclick="amonestar(Curso.value, alumno.value, fecha_amo.value, hora_amo.value, asignatura.value, causa_amo.value)">
-		</div>
-	</section>
-	<!--section que contiene el formulario para expulsar-->
-	<section id="contenidoExpulsiones">
-		<div id="formularioExpulsiones">
-			<label>Curso:</label>
-			<select id="Curso_Exp" onchange="rellenarAlumnosExpulsion(this.value)">
-				<option></option>
-			</select>
-			<label id="label_alumno_Exp">Alumno:</label>
-			<select id="alumno_Exp">
-				<option></option>
-			</select>
-			<br><br><br>
-			<label>Fecha:</label>
-			<input id="fecha_exp" type="date">
-			<label id="label_hora_exp">Hora:</label>
-			<input id="hora_exp" type="time">
-			<br><br><br>
-			<label>Asignatura:</label>
-			<select id="asignatura_exp">
-				<option></option>
-			</select>
-			<label id="label_causa_exp">Causa:</label>
-			<select id="causa_exp">
-				<option></option>
-			</select>
-			<br><br><br>
-			<input type="checkbox" id="nueva_causa_expulsion">
-			<label for="nueva_causa_expulsion">
-				<div class="outside">
-					<div class="inside">
-						<img class="check" src="imagenes/checked.png">
-					</div>
-				</div> Añadir una causa nueva
-			</label>
-			<br><br>
-			<div id="causa_exp_nueva">
-				<textarea id="nueva_Expulsion" maxlength="100" placeholder="Escribe la nueva causa de expulsión"></textarea>
-				<br>
-				<input id="crearExp" type="button" value="Crear" onclick="crearCausaExpulsion(nueva_Expulsion.value)">
-			</div>
-			<br><br>
-			<input id="expulsarSancion" type="button" value="Sanción Directa" onclick="expulsarSancion(Curso_Exp.value, alumno_Exp.value, fecha_exp.value, hora_exp.value, asignatura_exp.value, causa_exp.value)">
-			<input id="expulsar" type="button" value="Expulsar" onclick="expulsar(Curso_Exp.value, alumno_Exp.value, fecha_exp.value, hora_exp.value, asignatura_exp.value, causa_exp.value)">
-		</div>
-	</section>
-	<!--section que contiene el formulario para sancionar-->
-	<section id="contenidoSancion">
-		<div id="formularioSancion">
-			<label>DNI Alumno:</label>
-			<input id="dni_sancion" type="text" maxlength="9">
-				<img class="buscar" src="imagenes/buscar.png" onclick="mostrarAmo(dni_sancion.value)">
-			<br><br><br>
-			<label>Sanción:</label>
-			<br>
-			<textarea id="nueva_Sancion" maxlength="200" placeholder="Escribe la sanción a aplicar"></textarea>
-			<br><br>
-			<label>Fecha:</label>
-			<input id="fech_Sancion" type="date">
-			<br><br>
-			<input id="sancionar" type="button" value="Sancionar" onclick="sancionar(fech_Sancion.value, nueva_Sancion.value)">
-		</div>
-		<div id="tablaDeSanciones">
-			<div id="tituloTablaSanciones">
-				<div class="tituloTablaSanciones">
-					<span>DNI</span>
-				</div>
-				<div class="tituloTablaSanciones">
-					<span>Nombre</span>
-				</div>
-				<div class="tituloTablaSanciones">
-					<span>Asignatura</span>
-				</div>
-				<div class="tituloTablaSanciones">
-					<span>Profesor</span>
-				</div>
-				<div class="tituloTablaSanciones">
-					<span>Causa</span>
-				</div>
-				<div class="RBTablaSanciones">
-				</div>
-			</div>
-			<div id="contenedorTablaSanciones"></div>
-		</div>
-	</section>
-	<!--section que contiene el formulario para firmar amonestaciones y expulsiones-->
-	<section id="contenidoFirmas">
-		<div id="formularioFirmas">
-			<label>DNI Alumno:</label>
-			<input id="dni" type="text" maxlength="9">
-			<img class="buscar" src="imagenes/buscar.png" onclick="activarFiltros(dni.value)">
-			<br><br><br>
-			<div id="filtros">
-				<label>Buscar por:</label>
-				<br><br>
-				<input id="filtro_Amo" onclick="recogerTipo(this.value)" class="filtro" type="radio" name="tipo_filtro" value="amonestaciones">
-            	<label for="filtro_Amo">
-                	<div class="outsiderb">
-                    	<div class="insiderb"></div>
-	                </div> Amonestaciones
-            	</label>
-				<br>
-				<input id="filtro_Exp" onclick="recogerTipo(this.value)" class="filtro" type="radio" name="tipo_filtro" value="expulsiones">
-            	<label for="filtro_Exp">
-                	<div class="outsiderb">
-                    	<div class="insiderb"></div>
-	                </div> Expulsiones
-            	</label>
+		</section>
+		<!--section que contiene el formulario para amonestar-->
+		<section id="contenidoAmonestaciones">
+			<div id="formularioAmonestaciones">
+				<label>Curso:</label>
+				<select id="Curso">
+					<option></option>
+				</select>
+				<label id="label_alumno">Alumno:</label>
+				<select id="alumno">
+					<option></option>
+				</select>
 				<br><br><br>
+				<label>Fecha:</label>
+				<input id="fecha_amo" type="date">
+				<label id="label_hora_amo">Hora:</label>
+				<input id="hora_amo" type="time">
+				<br><br><br>
+				<label>Asignatura:</label>
+				<select id="asignatura">
+					<option></option>
+				</select>
+				<label id="label_causa_amo">Causa:</label>
+				<select id="causa_amo">
+					<option></option>
+				</select>
+				<br><br><br>
+				<input type="checkbox" id="nueva_causa">
+				<label for="nueva_causa">
+					<div class="outside">
+						<div class="inside">
+							<img class="check" src="imagenes/checked.png">
+						</div>
+					</div> Añadir una causa nueva
+				</label>
+				<br><br>
+				<div id="causa_amo_nueva">
+					<textarea id="nueva_Amonestacion" maxlength="100" placeholder="Escribe la nueva causa de amonestación"></textarea>
+					<br>
+					<input id="crearAmo" type="button" value="Crear">
+				</div>
+				<br><br>
+				<input id="amonestar" type="button" value="Amonestar">
 			</div>
-			<label>Fecha de la firma:</label>
-			<input id="fech_firma" type="date">
-			<br><br>
-			<input id="firmar" type="button" value="Firmar" onclick="firmar(fech_firma.value)">
-		</div>
-		<div id="tablaDeFirmas">
-			<div id="tituloTabla">
-				<div class="tituloTabla">
-					<span>DNI</span>
+		</section>
+		<!--section que contiene el formulario para expulsar-->
+		<section id="contenidoExpulsiones">
+			<div id="formularioExpulsiones">
+				<label>Curso:</label>
+				<select id="Curso_Exp">
+					<option></option>
+				</select>
+				<label id="label_alumno_Exp">Alumno:</label>
+				<select id="alumno_Exp">
+					<option></option>
+				</select>
+				<br><br><br>
+				<label>Fecha:</label>
+				<input id="fecha_exp" type="date">
+				<label id="label_hora_exp">Hora:</label>
+				<input id="hora_exp" type="time">
+				<br><br><br>
+				<label>Asignatura:</label>
+				<select id="asignatura_exp">
+					<option></option>
+				</select>
+				<label id="label_causa_exp">Causa:</label>
+				<select id="causa_exp">
+					<option></option>
+				</select>
+				<br><br><br>
+				<input type="checkbox" id="nueva_causa_expulsion">
+				<label for="nueva_causa_expulsion">
+					<div class="outside">
+						<div class="inside">
+							<img class="check" src="imagenes/checked.png">
+						</div>
+					</div> Añadir una causa nueva
+				</label>
+				<br><br>
+				<div id="causa_exp_nueva">
+					<textarea id="nueva_Expulsion" maxlength="100" placeholder="Escribe la nueva causa de expulsión"></textarea>
+					<br>
+					<input id="crearExp" type="button" value="Crear">
 				</div>
-				<div class="tituloTabla">
-					<span>Nombre</span>
-				</div>
-				<div class="tituloTabla">
-					<span>Asignatura</span>
-				</div>
-				<div class="tituloTabla">
-					<span>Profesor</span>
-				</div>
-				<div class="tituloTabla">
-					<span>Causa</span>
-				</div>
-				<div class="RBTabla">
-				</div>
+				<br><br>
+				<input id="expulsarSancion" type="button" value="Sanción Directa">
+				<input id="expulsar" type="button" value="Expulsar">
 			</div>
-			<div id="contenedorTabla"></div>
-		</div>
-	</section>
-	<!--section que contiene la estructura que muestra distintos mensajes a lo largo de la aplicación-->
-	<section id="mensaje_info">
-		<div id="informacion">
-			<span id="mensaje"></span>
-			<button id="aceptar_mensaje">Aceptar</button>
-		</div>
-	</section>
-</body>
+		</section>
+		<!--section que contiene el formulario para sancionar-->
+		<section id="contenidoSancion">
+			<div id="formularioSancion">
+				<label>DNI Alumno:</label>
+				<input id="dni_sancion" type="text" maxlength="9">
+					<img id="buscarSan" class="buscar" src="imagenes/buscar.png">
+				<br><br><br>
+				<label>Sanción:</label>
+				<br>
+				<textarea id="nueva_Sancion" maxlength="200" placeholder="Escribe la sanción a aplicar"></textarea>
+				<br><br>
+				<label>Fecha:</label>
+				<input id="fech_Sancion" type="date">
+				<br><br>
+				<input id="sancionar" type="button" value="Sancionar">
+			</div>
+			<div id="tablaDeSanciones">
+				<div id="tituloTablaSanciones">
+					<div class="tituloTablaSanciones">
+						<span>DNI</span>
+					</div>
+					<div class="tituloTablaSanciones">
+						<span>Nombre</span>
+					</div>
+					<div class="tituloTablaSanciones">
+						<span>Asignatura</span>
+					</div>
+					<div class="tituloTablaSanciones">
+						<span>Profesor</span>
+					</div>
+					<div class="tituloTablaSanciones">
+						<span>Causa</span>
+					</div>
+					<div class="RBTablaSanciones">
+					</div>
+				</div>
+				<div id="contenedorTablaSanciones"></div>
+			</div>
+		</section>
+		<!--section que contiene el formulario para firmar amonestaciones y expulsiones-->
+		<section id="contenidoFirmas">
+			<div id="formularioFirmas">
+				<label>DNI Alumno:</label>
+				<input id="dni" type="text" maxlength="9">
+				<img class="buscar" src="imagenes/buscar.png" onclick="activarFiltros(dni.value)">
+				<br><br><br>
+				<div id="filtros">
+					<label>Buscar por:</label>
+					<br><br>
+					<input id="filtro_Amo" onclick="recogerTipo(this.value)" class="filtro" type="radio" name="tipo_filtro" value="amonestaciones">
+        	<label for="filtro_Amo">
+          	<div class="outsiderb">
+            	<div class="insiderb"></div>
+            </div> Amonestaciones
+        	</label>
+					<br>
+					<input id="filtro_Exp" onclick="recogerTipo(this.value)" class="filtro" type="radio" name="tipo_filtro" value="expulsiones">
+        	<label for="filtro_Exp">
+          	<div class="outsiderb">
+            	<div class="insiderb"></div>
+            </div> Expulsiones
+        	</label>
+					<br><br><br>
+				</div>
+				<label>Fecha de la firma:</label>
+				<input id="fech_firma" type="date">
+				<br><br>
+				<input id="firmar" type="button" value="Firmar">
+			</div>
+			<div id="tablaDeFirmas">
+				<div id="tituloTabla">
+					<div class="tituloTabla">
+						<span>DNI</span>
+					</div>
+					<div class="tituloTabla">
+						<span>Nombre</span>
+					</div>
+					<div class="tituloTabla">
+						<span>Asignatura</span>
+					</div>
+					<div class="tituloTabla">
+						<span>Profesor</span>
+					</div>
+					<div class="tituloTabla">
+						<span>Causa</span>
+					</div>
+					<div class="RBTabla"></div>
+				</div>
+				<div id="contenedorTabla"></div>
+			</div>
+		</section>
+		<!--section que contiene la estructura que muestra distintos mensajes a lo largo de la aplicación-->
+		<section id="mensaje_info">
+			<div id="informacion">
+				<span id="mensaje"></span>
+				<button id="aceptar_mensaje">Aceptar</button>
+			</div>
+		</section>
+	</body>
 </html>

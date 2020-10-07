@@ -1,14 +1,12 @@
-import { serverCall, rutaPhp, mensaje } from "./module/functions.js";
+import { serverCall, rutaPhp, mensaje, imprimir } from "./module/functions.js";
 
-//funcion que cierra la sesion del usuario actual
-function salir(){
-	crearAjax();
-
-	objAjax.open("GET","http://localhost/html/proyectoDelphos/php/cerrarSesion.php", true);
-	objAjax.send();
+// Evento click que cierra la sesion de php
+document.getElementById("salir").addEventListener("click", function() {
+	let ruta = rutaPhp + "cerrarSesion.php";
+	serverCall(ruta);
 
 	location.href = "index.html";
-}
+});
 
 // Evento que recoge los datos de la sesion de php al finalizar la carga de listados.html
 document.addEventListener("DOMContentLoaded", function() {
@@ -16,51 +14,59 @@ document.addEventListener("DOMContentLoaded", function() {
 	serverCall(ruta, recibirDatosLogin);
 });
 
-//funcion que rellena el select de profesores con los profesores
+// Evento que manda imprimir la pulsar el boton
+document.getElementById("btnImprimir").addEventListener("click", function() {
+	imprimir();
+});
+
+// Funcion que rellena el select de profesores con los profesores
 function rellenarProf() {
 	let ruta = rutaPhp + "buscarProf.php";
 	serverCall(ruta, recibirPorf);
 }
 
-//funcion que se encarga de rellenar el select con los cursos
+// Funcion que se encarga de rellenar el select con los cursos
 function rellenarCursos(){
 	let ruta = rutaPhp + "listarCursos.php";
 	serverCall(ruta, recibirCursos);
 }
 
-//funcion que recoge el dni de un alumno y lo utiliza para buscar sus amonestaciones y expulsiones
-function buscarAmoExp( dni ) {
+// Funcion que recoge el dni de un alumno y lo utiliza para buscar sus amonestaciones y expulsiones
+document.getElementById("buscarAmoExpAlumn").addEventListener("click", function() {
+	var dni = document.getElementById("dniAlumn").value;
 	let ruta = rutaPhp + "buscarAmoExpAlumn.php?dni=" + dni;
 	serverCall(ruta, recibirAmoExpAlumn);
-}
+});
 
-//funcion que busca a todos los alumnos con amonestaciones y/o expulsiones sin firmar
-function alumnosSinFirma() {
+// Funcion que busca a todos los alumnos con amonestaciones y/o expulsiones sin firmar
+document.getElementById("filtro_dos").addEventListener("click", function() {
 	let ruta = rutaPhp + "buscarAlumnosSinFirma.php";
 	serverCall(ruta, recibirAlumnoSinFirma);
-}
+});
 
-//funcion que recoge el codigo de un profesor y lo utiliza para buscar las amonestaciones de ese profesor
-function amoProfesor( prof ) {
+// Funcion que recoge el codigo de un profesor y lo utiliza para buscar las amonestaciones de ese profesor
+document.getElementById("buscarAmoProf").addEventListener("click", function() {
+	var prof = document.getElementById("codProf").value;
 	let ruta = rutaPhp + "buscarAmoProf.php?prof=" + prof;
 	serverCall(ruta, recibirAmoProf);
-}
+});
 
 
-//funcion que recoge un curso y busca las expulsiones y amonestaciones de los alumnos de ese grupo
-function amoExpGrp( grupo ) {
+// Funcion que recoge un curso y busca las expulsiones y amonestaciones de los alumnos de ese grupo
+document.getElementById("buscarAmoExpGrp").addEventListener("click", function() {
+	var grupo = document.getElementById("codGrp").value;
 	let ruta = rutaPhp + "buscarAmoExpGrp.php?grp=" + grupo;
 	serverCall(ruta, recibirAmoExpGrp);
-}
+});
 
-//funcion que busca las amonestaciones totales de cada profesor
-function profesoresAmoTotal() {
+// Funcion que busca las amonestaciones totales de cada profesor
+document.getElementById("filtro_cinco").addEventListener("click", function() {
 	let ruta = rutaPhp + "buscarAmoTotal.php";
 	serverCall(ruta, recibirAmoTotales);
-}
+});
 
 /* Funcion que recibe los datos de la sesion y comprueba si hay algun usuario registrado
-si no hay ningun usuario se redirecciona a index.html */
+	si no hay ningun usuario se redirecciona a index.html */
 function recibirDatosLogin( response ) {
 	var profesor=[];
 			
@@ -74,19 +80,19 @@ function recibirDatosLogin( response ) {
 	}
 }
 
-//funcion que comprueba la respuesta del servidor al consultar los profesores
+// Funcion que comprueba la respuesta del servidor al consultar los profesores
 function recibirPorf( response ) {
 	let profesores = JSON.parse(response);
 	formatearProfs(profesores);
 }
 
-//funcion que comprueba la respuesta del servidor al consultar los cursos
+// Funcion que comprueba la respuesta del servidor al consultar los cursos
 function recibirCursos( response ) {
 	let datosCursos = JSON.parse(response);
 	formatearCursos(datosCursos);
 }
 
-//funcion que comprueba la respuesta del servidor al consultar las amonestaciones y expulsiones de un alumno
+// Funcion que comprueba la respuesta del servidor al consultar las amonestaciones y expulsiones de un alumno
 function recibirAmoExpAlumn( response ) {
 	let AmoExpAlumn = JSON.parse(response);
 	if(AmoExpAlumn[0] !== null || AmoExpAlumn[1] !== null) {
@@ -97,7 +103,7 @@ function recibirAmoExpAlumn( response ) {
 	}
 }
 
-//funcion que comprueba la respuesta del servidor al consultar los alumnos con amonestaciones y/o expulsiones sin firma
+// Funcion que comprueba la respuesta del servidor al consultar los alumnos con amonestaciones y/o expulsiones sin firma
 function recibirAlumnoSinFirma( response ) {
 	let alumn = JSON.parse(response);
 	if(alumn[0] !== null || alumn[1] !== null) {
@@ -108,7 +114,7 @@ function recibirAlumnoSinFirma( response ) {
 	}
 }
 
-//funcion que comprueba la respuesta del servidor al consultar las amonestaciones de un profesor
+// Funcion que comprueba la respuesta del servidor al consultar las amonestaciones de un profesor
 function recibirAmoProf( response ) {
 	if(response === "null"){
 		clearLista();
@@ -119,7 +125,7 @@ function recibirAmoProf( response ) {
 	}
 }
 
-//funcion que comprueba la respuesta del servidor al consultar las amonestaciones y expulsiones de un grupo
+// Funcion que comprueba la respuesta del servidor al consultar las amonestaciones y expulsiones de un grupo
 function recibirAmoExpGrp( response ) {
 	let AmoExpGrp = JSON.parse(response);
 	if(AmoExpGrp[0] !== null || AmoExpGrp[1] !== null){
@@ -130,7 +136,7 @@ function recibirAmoExpGrp( response ) {
 	}
 }
 
-//funcion que comprueba la respuesta del servidor al consultar las amonestaciones totales de cada profesor
+// Funcion que comprueba la respuesta del servidor al consultar las amonestaciones totales de cada profesor
 function recibirAmoTotales( response ) {
 	if(response === "null") {
 		clearLista();
@@ -141,7 +147,7 @@ function recibirAmoTotales( response ) {
 	}
 }
 
-//funcion que formatea los datos de los profesores en el select correspondiente
+// Funcion que formatea los datos de los profesores en el select correspondiente
 function formatearProfs( ArrayProfs ) {
 	var select = document.getElementById("codProf");
 
@@ -162,7 +168,7 @@ function formatearProfs( ArrayProfs ) {
 	rellenarCursos();
 }
 
-//funcion que formatea los datos de los cursos en el select correspondiente
+// Funcion que formatea los datos de los cursos en el select correspondiente
 function formatearCursos( ArrayCursos ) {
 	var select = document.getElementById('codGrp');
 
@@ -175,19 +181,19 @@ function formatearCursos( ArrayCursos ) {
 	}
 }
 
-//funcion que formatea los datos de las amonestaciones y expulsiones de un alumno
+// Funcion que formatea los datos de las amonestaciones y expulsiones de un alumno
 function formatearAmoExp( ArrayAmoExpalumn ) {
 	clearLista();
 
 	var tabla = document.createElement('div');
 	tabla.setAttribute("id", "table");
 
-	let alumno = document.createElement('div');
+	/*let alumno = document.createElement('div');
 	alumno.setAttribute('class', 'tituloListas');
 	let span = document.createElement('span');
-	span.innerHTML = ArrayAmoExpalumn[i][0]["NOMBRE"] + " " + ArrayAmoExpalumn[i][0]["APELLIDOS"];
+	span.innerHTML = ArrayAmoExpalumn[0][0]["NOMBRE"] + " " + ArrayAmoExpalumn[0][0]["APELLIDOS"];
 	alumno.appendChild(span);
-	tabla.appendChild(alumno);
+	tabla.appendChild(alumno);*/
 
 	for(let i in ArrayAmoExpalumn) {
 		if(ArrayAmoExpalumn[i] !== null) {
@@ -207,7 +213,7 @@ function formatearAmoExp( ArrayAmoExpalumn ) {
 	document.getElementById("contentPrint").style.display = "block";
 }
 
-//funcion que formatea los datos de las amonestaciones y expulsiones sin firma de todos los alumnos
+// Funcion que formatea los datos de las amonestaciones y expulsiones sin firma de todos los alumnos
 function formatearBusqueda( ArrayAlumn ) {
 	clearLista();
 
@@ -241,7 +247,7 @@ function formatearBusqueda( ArrayAlumn ) {
 	document.getElementById("contentPrint").style.display = "block";
 }
 
-//funcion que formatea los datos de las amonestaciones de un profesor
+// Funcion que formatea los datos de las amonestaciones de un profesor
 function formatearBusquedaAmoProf( ArrayAmoProf ) {
 	clearLista();
 
@@ -271,7 +277,7 @@ function formatearBusquedaAmoProf( ArrayAmoProf ) {
 	document.getElementById("contentPrint").style.display = "block";
 }
 
-//funcion que formatea los datos de las amonestaciones y expulsiones de un grupo
+// Funcion que formatea los datos de las amonestaciones y expulsiones de un grupo
 function formatearBusquedaAmoExpGrp( ArrayAmoExpGrp ) {
 	clearLista();
 
@@ -304,7 +310,7 @@ function formatearBusquedaAmoExpGrp( ArrayAmoExpGrp ) {
 	document.getElementById("contentPrint").style.display = "block";
 }
 
-//funcion que formatea los datos de las amonestaciones totales de cada profesor
+// Funcion que formatea los datos de las amonestaciones totales de cada profesor
 function formatearBusquedaTotal( ArrayTotal ) {
 	clearLista();
 
@@ -333,6 +339,7 @@ function formatearBusquedaTotal( ArrayTotal ) {
 	document.getElementById("contentPrint").style.display = "block";
 }
 
+// Funcion que limpia elemento "Listas"
 const clearLista = () => {
 	if(document.getElementById("Listas").hasChildNodes()) {
 		document.getElementById("Listas").removeChild(document.getElementById("table"));

@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-	<meta name="theme-color" content="#303F9F">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/styleIndex.css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/scriptAnimaciones.js"></script>
-	<script type="module" src="js/ajaxLogin.js"></script>
-	<link rel="icon" type="image/png" href="imagenes/logoDelphos.png">
-	<title>DELPHOS - Inicio</title>
-</head>
-<body>
-	<!--cabecera de la pagina-->
-	<header>
-		<div id="mostrar">
-			<span id="burger" class="material-icons md-24">menu</span>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="theme-color" content="#303F9F">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/styleIndex.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/scriptAnimaciones.js"></script>
+		<script type="module" src="js/ajaxLogin.js"></script>
+		<link rel="icon" type="image/png" href="imagenes/logoDelphos.png">
+		<title>DELPHOS - Inicio</title>
+	</head>
+	<body>
+		<!--cabecera de la pagina-->
+		<header>
+			<div id="mostrar">
+				<span id="burger" class="material-icons md-24">menu</span>
+			</div>
+			<span id="titulo">Inicio</span>
+			<!--Icono de usuario registrado-->
+			<div id="userLog">
+				<span id="inicialLog"></span>
+			</div>
+		</header>
+		<div id="listOptions">
+			<span id="salir">Cerrar sesion</span>
 		</div>
-		<span id="titulo">Inicio</span>
-		<!--Icono de usuario registrado-->
-		<div id="userLog">
-			<span id="inicialLog"></span>
-		</div>
-	</header>
-	<div id="listOptions">
-		<span id="salir">Cerrar sesion</span>
-	</div>
-	<!--section que contiene el menu lateral con los enlaces a los distintas secciones de la aplicación y otros enlaces externos-->
-	<section id="fondoMenu">
+		<!--section que contiene el menu lateral con los enlaces a los distintas secciones de la aplicación y otros enlaces externos-->
+		<section id="fondoMenu">
 			<nav id="menu">
 				<div id="imagen">
 					<img src="imagenes/FORMSF14.gif" alt="">
@@ -84,47 +84,40 @@
 					</a>
 				</div>
 			</nav>
-	</section>
-	<!--section que contiene la tarjeta de bienvenida y la estructura animada-->
-	<section id="contenido">
-		<!--<div id="welcome">
-			<input id="salirLogin" type="button" value="Salir">
-		</div>-->
-		<!--div que contiene la estructura animada que se activa al pulsar sobre ella-->
-		<div id="animacion" onclick="animar()">
-			<div id="semiUno">
-			</div>
-			<div id="middle">
-				<div id="middleUno">
+		</section>
+		<!--section que contiene la tarjeta de bienvenida y la estructura animada-->
+		<section id="contenido">
+			<!--div que contiene la estructura animada que se activa al pulsar sobre ella-->
+			<div id="animacion" onclick="animar()">
+				<div id="semiUno"></div>
+				<div id="middle">
+					<div id="middleUno"></div>
+					<div id="middleDos"></div>
 				</div>
-				<div id="middleDos">
+				<div id="semiDos"></div>
+			</div>
+		</section>
+		<!--section que contiene el formulario de login-->
+		<section id="formLogin">
+			<div id="Login">
+				<div id="fondoLogin">
+					<img src="imagenes/FORMSF14.gif">
+				</div>
+				<div id="camposLogin">
+					<div id="campos">
+						<input id="usuario" name="usuario" type="text" maxlength="9" placeholder="Usuario" autofocus>
+						<input id="pwd" name="pwd" type="password" maxlength="10" placeholder="Contraseña">
+					</div>
+					<input id="entrarLogin" type="button" value="Entrar">
 				</div>
 			</div>
-			<div id="semiDos">
+		</section>
+		<!--section que contiene la estructura que muestra distintos mensajes a lo largo de la aplicación-->
+		<section id="mensaje_info">
+			<div id="informacion">
+				<span id="mensaje"></span>
+				<button id="aceptar_mensaje">Aceptar</button>
 			</div>
-		</div>
-	</section>
-	<!--section que contiene el formulario de login-->
-	<section id="formLogin">
-		<div id="Login">
-			<div id="fondoLogin">
-				<img src="imagenes/FORMSF14.gif">
-			</div>
-			<div id="camposLogin">
-				<div id="campos">
-					<input id="usuario" name="usuario" type="text" maxlength="9" placeholder="Usuario" autofocus>
-					<input id="pwd" name="pwd" type="password" maxlength="10" placeholder="Contraseña">
-				</div>
-				<input id="entrarLogin" type="button" value="Entrar">
-			</div>
-		</div>
-	</section>
-	<!--section que contiene la estructura que muestra distintos mensajes a lo largo de la aplicación-->
-	<section id="mensaje_info">
-		<div id="informacion">
-			<span id="mensaje"></span>
-			<button id="aceptar_mensaje">Aceptar</button>
-		</div>
-	</section>
-</body>
+		</section>
+	</body>
 </html>
