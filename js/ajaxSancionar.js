@@ -14,7 +14,7 @@ document.getElementById("buscarSan").addEventListener("click", function() {
 /* Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras la busqueda por dni,
 	si la busqueda a sido correcta llama a una funcion que se encarga de formatear los datos */
 function recibirBusquedaAmoSan( response ) {
-	if(response === "Sin resultado") {
+	if(response === 0) {
 		clearTablaSan();
 		mensaje("No se han encontrado datos que coincidan con tu busqueda");
 		document.getElementById("tablaDeSanciones").style.display="none";
@@ -43,9 +43,12 @@ function formatearBusquedaAmonestaciones( ArrayAmoSan ) {
 		let boton = document.createElement('input');
 		boton.setAttribute("type", "radio");
 		boton.setAttribute("id", i);
+		boton.setAttribute("class", "accionBoton accionDNI");
 		boton.setAttribute("name", "RBFirma");
 		boton.setAttribute("value", ArrayAmoSan[i].CodAmonestacion);
-		boton.setAttribute("onclick", "aplicarFechaSan('" + ArrayAmoSan[i].Fecha_Amonestacion + "'), recogerCod(this.value), recogerDNI('" + V_dni + "')");
+		boton.setAttribute("onclick", "aplicarFechaSan('" + ArrayAmoSan[i].Fecha_Amonestacion + "')");
+		//boton.addEventListener("click", recogerCod(this.value));
+		//boton.addEventListener("click", recogerDNI(V_dni));
 		let label = crearRB(i);
 		td.appendChild(boton);
 		td.appendChild(label);

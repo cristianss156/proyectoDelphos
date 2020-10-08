@@ -7,13 +7,13 @@
 	$codAmonestacion = getcodAmonestacion();
 
 	function getcodAmonestacion() {
-	    $patron = '1234567890abcdefghijklmnopqrstuvwxyz';
-	    $max = strlen($patron) - 1;
-	    $cadena = '';
-	    for($i = 0; $i < 9; $i++) {
-	        $cadena .= $patron{ mt_rand(0, $max) };
-	    }
-	    return $cadena;
+    $patron = '1234567890abcdefghijklmnopqrstuvwxyz';
+    $max = strlen($patron) - 1;
+    $cadena = '';
+    for($i = 0; $i < 9; $i++) {
+      $cadena .= $patron{ mt_rand(0, $max) };
+    }
+    return $cadena;
 	}
 
 	$result = $conexion->prepare("INSERT INTO amonestaciones (CodAmonestacion, IdAlumno, CodProfesor, CodAsignatura, CausaAmonestacion, CodCurso, Fecha_Amonestacion, Hora_Amonestacion) VALUES (:_codAdmo, :_alumn, :_prof, :_asig, :_causa, :_curso, :_fecha, :_hora);");

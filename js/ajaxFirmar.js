@@ -63,9 +63,11 @@ function formatearBusqueda( ArrayBusqueda ) {
 		let boton = document.createElement('input');
 		boton.setAttribute("type", "radio");
 		boton.setAttribute("id", i);
+		boton.setAttribute("class", "accionBoton");
 		boton.setAttribute("name", "RBFirma");
 		boton.setAttribute("value", ArrayBusqueda[i]["CodAmonestacion"]);
-		boton.setAttribute("onclick", "aplicarFecha('"+ArrayBusqueda[i]["Fecha_Amonestacion"]+"'), recogerCod(this.value)");
+		boton.setAttribute("onclick", "aplicarFecha('"+ArrayBusqueda[i]["Fecha_Amonestacion"]+"'))");
+		//boton.addEventListener("click", recogerCod(this.value));
 		let label = crearRB(i);
 		td.appendChild(boton);
 		td.appendChild(label);
@@ -98,9 +100,11 @@ function formatearBusquedaExpulsiones( ArrayBusqueda ) {
 		let boton = document.createElement('input');
 		boton.setAttribute("type", "radio");
 		boton.setAttribute("id", i);
+		boton.setAttribute("class", "accionBoton");
 		boton.setAttribute("name", "RBFirma");
 		boton.setAttribute("value", ArrayBusqueda[i].CodExpulsiones);
-		boton.setAttribute("onclick", "aplicarFecha('"+ArrayBusqueda[i].Fecha_Expulsion+"'), recogerCod(this.value)");
+		boton.setAttribute("onclick", "aplicarFecha('"+ArrayBusqueda[i].Fecha_Expulsion+"')");
+		//boton.addEventListener("click", recogerCod(this.value));
 		let label = crearRB(i);
 		td.appendChild(boton);
 		td.appendChild(label);

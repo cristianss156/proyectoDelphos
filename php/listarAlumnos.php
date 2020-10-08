@@ -1,18 +1,20 @@
 <?php
 
-$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
 
-$curso=$_REQUEST["curso"];
+	$curso=$_REQUEST["curso"];
 
-$result=mysqli_query($conexion, "select * from alumnos where codcurso='$curso'") or die ("Error al consultar.");
+	$result=mysqli_query($conexion, "select * from alumnos where codcurso='$curso'") or die ("Error al consultar.");
 
-$i=0;
+	$i=0;
 
-while($fila=mysqli_fetch_array($result)){
-	$alumnos[$i]=$fila;
-	$i++;
-}
+	while($fila=mysqli_fetch_array($result)){
+		$alumnos[$i]=$fila;
+		$i++;
+	}
 
-echo json_encode($alumnos);
+	echo json_encode($alumnos);
 
-mysqli_close($conexion);
+	mysqli_close($conexion);
+
+?>

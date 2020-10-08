@@ -70,7 +70,7 @@ document.getElementById("filtro_cinco").addEventListener("click", function() {
 function recibirDatosLogin( response ) {
 	var profesor=[];
 			
-	if(response === "Sin datos") {
+	if(response === 0) {
 		location.href = "index.html";
 	} else {
 		let profesor = JSON.parse(response);
@@ -116,7 +116,7 @@ function recibirAlumnoSinFirma( response ) {
 
 // Funcion que comprueba la respuesta del servidor al consultar las amonestaciones de un profesor
 function recibirAmoProf( response ) {
-	if(response === "null"){
+	if(response === 0){
 		clearLista();
 		mensaje("No se han encontrado datos que coincidan con tu busqueda");
 	}	else {
@@ -138,7 +138,7 @@ function recibirAmoExpGrp( response ) {
 
 // Funcion que comprueba la respuesta del servidor al consultar las amonestaciones totales de cada profesor
 function recibirAmoTotales( response ) {
-	if(response === "null") {
+	if(response === 0) {
 		clearLista();
 		mensaje("No se han encontrado datos que coincidan con tu busqueda");
 	}	else {

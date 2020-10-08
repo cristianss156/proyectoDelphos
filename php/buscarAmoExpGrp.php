@@ -1,32 +1,30 @@
 <?php
 
-$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	require_once('conexionBD.php');
 
-$_grupo=$_REQUEST["grp"];
+	$_grupo = $_REQUEST["grp"];
+	$alumnos = null;
 
-$result=mysqli_query($conexion, "select alu.dni as DNI, alu.nombre as NOMBRE, alu.apellidos as APELLIDOS, alu.codCurso as CURSO, count(*) as CUENTA from alumnos alu, amonestaciones amo, causas_amonestacion ca where amo.CodCurso='$_grupo' and alu.dni=amo.idalumno and ca.codcausa_Amonestacion=amo.causaamonestacion group by alu.dni;") or die ("Error al consultar.");
+	$result = $conexion->prepare("SELECT alu.dni AS DNI, alu.nombre AS NOMBRE, alu.apellidos AS APELLIDOS, alu.codCurso AS CURSO, count(*) AS CUENTA FROM alumnos alu, amonestaciones amo, causas_amonestacion ca WHERE amo.CodCurso=:_GRP AND alu.dni=amo.idalumno AND ca.codcausa_Amonestacion=amo.causaamonestacion GROUP BY alu.dni;");
+	$result->bindValue(':_GRP', $_grupo, PDO::PARAM_STR);
+	$result->execute();
 
-$result2=mysqli_query($conexion, "select alu.dni as DNI, alu.nombre as NOMBRE, alu.apellidos as APELLIDOS, alu.codCurso as CURSO, count(*) as CUENTA from alumnos alu, expulsiones exp, causa_expulsion ce where exp.CodCurso='$_grupo' and alu.dni=exp.idalumno and ce.codcausa_expulsion=exp.causaexpulsion group by alu.dni;") or die ("Error al consultar.");
+	$aux = null;
+	while($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+		$alumnosAMO[] = array_map('utf8_encode', $fila);
+	}
+	$alumnos[0] = $aux;
 
-$i=0;
-$j=0;
-$alumnos=null;
-$alumnosAMO=null;
-$alumnosEXP=null;
+	$result = $conexion->prepare("SELECT alu.dni AS DNI, alu.nombre AS NOMBRE, alu.apellidos AS APELLIDOS, alu.codCurso AS CURSO, count(*) AS CUENTA FROM alumnos alu, expulsiones exp, causa_expulsion ce WHERE exp.CodCurso=:_GRP AND alu.dni=exp.idalumno AND ce.codcausa_expulsion=exp.causaexpulsion GROUP BY alu.dni;");
+	$result->bindValue(':_GRP', $_grupo, PDO::PARAM_STR);
+	$result->execute();
 
-while($fila=mysqli_fetch_array($result)){
-	$alumnosAMO[$i]=$fila;
-	$i++;
-}
+	$aux = null;
+	while($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+		$alumnosEXP[] = array_map('utf8_encode', $fila);
+	}	
+	$alumnos[1] = $aux;
 
-while($fila2=mysqli_fetch_array($result2)){
-	$alumnosEXP[$j]=$fila2;
-	$j++;
-}
+	echo json_encode($alumnos);
 
-$alumnos[0]=$alumnosAMO;
-$alumnos[1]=$alumnosEXP;
-
-echo json_encode($alumnos);
-
-mysqli_close($conexion);
+?>

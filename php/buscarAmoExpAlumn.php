@@ -1,32 +1,30 @@
 <?php
 
-$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	require_once('conexionBD.php');
 
-$_dni=$_REQUEST["dni"];
+	$_dni = $_REQUEST["dni"];
+	$alumnos = null;
 
-$result=mysqli_query($conexion, "select al.nombre as NOMBRE, al.apellidos as APELLIDOS, ca.descripcion as CAUSA, a.Fecha_Amonestacion as FECHA from alumnos al, amonestaciones a, causas_amonestacion ca where al.DNI='$_dni' and a.IdAlumno='$_dni' and a.CausaAmonestacion=ca.CodCausa_Amonestacion;") or die ("Error al consultar.");
+	$result = $conexion->prepare($"SELECT al.nombre AS NOMBRE, al.apellidos AS APELLIDOS, ca.descripcion AS CAUSA, a.Fecha_Amonestacion AS FECHA FROM alumnos al, amonestaciones a, causas_amonestacion ca WHERE al.DNI=:_DNI AND a.IdAlumno=:_DNI AND a.CausaAmonestacion=ca.CodCausa_Amonestacion;");
+	$result->bindValue(':_DNI', $_dni, PDO::PARAM_STR);
+	$result->execute();
 
-$result2=mysqli_query($conexion, "select al.nombre as NOMBRE, al.apellidos as APELLIDOS, ce.descripcion as CAUSA, e.Fecha_Expulsion as FECHA from alumnos al, expulsiones e, causa_expulsion ce where al.DNI='$_dni' and e.IdAlumno='$_dni' and e.CausaExpulsion=ce.CodCausa_Expulsion;") or die ("Error al consultar.");
+	$aux = null;
+	while($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+		$aux[] = array_map('utf8_encode', $fila);
+	}
+	$alumnos[0] = $aux;
 
-$i=0;
-$j=0;
-$alumnos=null;
-$alumnosAMO=null;
-$alumnosEXP=null;
+	$result = $conexion->prepare("SELECT al.nombre AS NOMBRE, al.apellidos AS APELLIDOS, ce.descripcion AS CAUSA, e.Fecha_Expulsion AS FECHA FROM alumnos al, expulsiones e, causa_expulsion ce WHERE al.DNI=:_DNI AND e.IdAlumno=:_DNI AND e.CausaExpulsion=ce.CodCausa_Expulsion;");
+	$result->bindValue(':_DNI', $_dni, PDO::PARAM_STR);
+	$result->execute();
 
-while($fila=mysqli_fetch_array($result)){
-	$alumnosAMO[$i]=$fila;
-	$i++;
-}
+	$aux = null;
+	while($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+		$aux[] = array_map('utf8_encode', $fila);
+	}
+	$alumnos[1] = $aux;
 
-while($fila2=mysqli_fetch_array($result2)){
-	$alumnosEXP[$j]=$fila2;
-	$j++;
-}
+	echo json_encode($alumnos);
 
-$alumnos[0]=$alumnosAMO;
-$alumnos[1]=$alumnosEXP;
-
-echo json_encode($alumnos);
-
-mysqli_close($conexion);
+?>

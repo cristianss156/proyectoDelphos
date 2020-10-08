@@ -1,22 +1,18 @@
 <?php
+	
+	require_once('conexionBD.php');
 
-$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	$datosBusqueda = $_REQUEST["datosBusqueda"];
 
-$datosBusqueda=$_REQUEST["datosBusqueda"];
+	$result = $conexion->prepare("SELECT a.CodAmonestacion, a.Fecha_Amonestacion, alu.Nombre, asig.NombreAsig, c.descripcion FROM amonestaciones a, alumnos alu, asignaturas asig, causas_amonestacion c WHERE idalumno=:_DNI  AND dni=:_DNI AND asig.CodAsignatura=a.CodAsignatura AND CodCausa_Amonestacion=a.CausaAmonestacion AND a.CodSancion IS NULL");
+	$result->bindValue(':_DNI', $datosBusqueda, PDO::PARAM_STR);
+	$result->execute();
 
-$result=mysqli_query($conexion, "select a.CodAmonestacion, a.Fecha_Amonestacion, alu.Nombre, asig.NombreAsig, c.descripcion from amonestaciones a, alumnos alu, asignaturas asig, causas_amonestacion c where idalumno='$datosBusqueda'  and dni='$datosBusqueda' and asig.CodAsignatura=a.CodAsignatura and CodCausa_Amonestacion=a.CausaAmonestacion and a.CodSancion is null") or die ("Error al buscar.");
+	if(count($result) !== 0) {
+		while($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+			$resultBusqueda[] = array_map('utf8_encode', $fila);
+		}
+		echo json_encode($resultBusqueda);
+	} else{ echo 0; }
 
-$i=0;
-
-while($fila=mysqli_fetch_array($result)){
-	$resultBusqueda[$i]=$fila;
-	$i++;
-}
-if(isset($resultBusqueda)){
-	echo json_encode($resultBusqueda);
-}
-else{
-	echo "Sin resultado";
-}
-
-mysqli_close($conexion);
+?>

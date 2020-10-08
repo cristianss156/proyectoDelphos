@@ -1,23 +1,18 @@
 <?php
 
-$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	require_once('conexionBD.php');
 
-$_prof=$_REQUEST["prof"];
+	$_prof = $_REQUEST["prof"];
 
-$result=mysqli_query($conexion, "select ca.descripcion as CAUSA, amo.Fecha_Amonestacion as FECHA, alu.dni as DNI, alu.nombre as NOMBRE, alu.Apellidos as APELLIDOS from alumnos alu, amonestaciones amo, causas_amonestacion ca where amo.CodProfesor='$_prof' and amo.IdAlumno=alu.DNI and ca.CodCausa_Amonestacion=amo.CausaAmonestacion") or die ("Error al consultar.");
+	$result = $conexion->prepare("SELECT ca.descripcion AS CAUSA, amo.Fecha_Amonestacion AS FECHA, alu.dni AS DNI, alu.nombre AS NOMBRE, alu.Apellidos AS APELLIDOS FROM alumnos alu, amonestaciones amo, causas_amonestacion ca WHERE amo.CodProfesor=:_PROF AND amo.IdAlumno=alu.DNI AND ca.CodCausa_Amonestacion=amo.CausaAmonestacion");
+	$result->bindValue(':_PROF', $_prof, PDO::PARAM_STR);
+	$result->execute();
 
-$i=0;
-$total=null;
+	if(count($result) !== 0) {
+		while($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+			$totalAMO[] = array_map('utf8_encode', $fila);
+		}
+		echo json_encode($totalAMO);
+	} else { echo 0; }
 
-while($fila=mysqli_fetch_array($result)){
-	$totalAMO[$i]=$fila;
-	$i++;
-}
-
-if(isset($totalAMO)){
-	$total[]=$totalAMO;
-}
-
-echo json_encode($total);
-
-mysqli_close($conexion);
+?>

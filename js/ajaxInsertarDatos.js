@@ -12,13 +12,35 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Funcion que recoge el codigo de la expulsion o amonestacion sobre la que se va a trabajar
-var recogerCod = ( _codigo ) => _cod = _codigo;
+var inputsCod = document.getElementsByClassName("accionBoton");
+ for (let i = 0; i < inputsCod.length; i++) {
+ 	inputsCod[i].addEventListener("click", function( e ) {
+ 		if(e.target) {
+	 		cod = this.value;
+	 	}
+	 })
+ };
+//var recogerCod = ( _codigo ) => _cod = _codigo;
 
 // Funcion que recoge si hay que firmar una amonestacion o una expulsion
-var recogerTipo = ( _tipoFirma ) =>	_tipo = _tipoFirma;
+var inputs = document.getElementsByClassName("filtro");
+ for (let i = 0; i < inputs.length; i++) {
+ 	inputs[i].addEventListener("click", function() {
+	 	_tipo = this.value;
+	 })
+ };
+//var recogerTipo = ( _tipoFirma ) =>	_tipo = _tipoFirma;
 
 // Funcion que recoge el dni del alumno para utilizarlo en las distintas funciones
-var recogerDNI = ( _dni ) => v_dni = _dni;
+var inputsDNI = document.getElementsByClassName("accionDNI");
+ for (let i = 0; i < inputsDNI.length; i++) {
+ 	inputsDNI[i].addEventListener("click", function( e ) {
+ 		if(e.target) {
+	 		v_dni = this.value;
+	 	}
+	 })
+ };
+//var recogerDNI = ( _dni ) => v_dni = _dni;
 
 // Funcion que recibe los datos que se necesitan para grabar una amonestacion
 document.getElementById("amonestar").addEventListener("click", function() {
@@ -110,7 +132,7 @@ function recibirDatosLogin( response ) {
 
 // Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras amonestar
 function recibirResultadoAmonestacion( response ) {
-	if(response === "Error al insertar.") {
+	if(response === 0) {
 		mensaje("Error al registrar la amonestación");
 	}	else {
 		mensaje("Amonestación guardada");
@@ -119,7 +141,7 @@ function recibirResultadoAmonestacion( response ) {
 
 // Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras expulsar
 function recibirResultadoExpulsion( response ) {
-	if(reponse === "Error al insertar.") {
+	if(reponse === 0) {
 		mensaje("Error al registrar la expulsión");
 	}	else {
 		mensaje("Expulsión guardada");
@@ -128,7 +150,7 @@ function recibirResultadoExpulsion( response ) {
 
 // Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras firmar
 function recibirResultadoFirma( response ) {
-	if(reponse === "0") {
+	if(reponse === 0) {
 		mensaje("Error al registrar la firma");
 	}	else {
 		mensaje("Firma guardada");
@@ -138,7 +160,7 @@ function recibirResultadoFirma( response ) {
 
 // Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras sancionar
 function recibirResultadoSancion( response ) {
-	if(response === "0") {
+	if(response === 0) {
 		mensaje("Error al registrar la sanción");
 	}	else {
 		mensaje("Sanción guardada");

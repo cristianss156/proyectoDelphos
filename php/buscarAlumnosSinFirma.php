@@ -1,30 +1,27 @@
 <?php
 
-$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	require_once('conexionBD.php');
 
-$result=mysqli_query($conexion, "select a.DNI as AMO_DNI, a.Nombre as AMO_NOMBRE, a.Apellidos as AMO_APELLIDOS, a.CodCurso as AMO_CURSO, count(a.DNI) as CUENTA from alumnos a, amonestaciones am where am.IdAlumno=a.DNI and Fecha_Firma is null group by a.DNI") or die ("Error al consultar.");
+	$alumnos = null;
 
-$result2=mysqli_query($conexion, "select a.DNI as EXP_DNI, a.Nombre as EXP_NOMBRE, a.Apellidos as EXP_APELLIDOS, a.CodCurso as EXP_CURSO, count(a.DNI) as CUENTA from alumnos a, expulsiones e where e.IdAlumno=a.DNI and e.Fecha_Firma is null group by a.DNI") or die ("Error al consultar.");
+	$result = $conexion->prepare("SELECT a.DNI AS AMO_DNI, a.Nombre AS AMO_NOMBRE, a.Apellidos AS AMO_APELLIDOS, a.CodCurso AS AMO_CURSO, COUNT(a.DNI) AS CUENTA FROM alumnos a, amonestaciones am WHERE am.IdAlumno=a.DNI AND Fecha_Firma IS NULL GROUP BY a.DNI");
+	$result->execute();
 
-$i=0;
-$j=0;
-$alumnos=null;
-$alumnosAMO=null;
-$alumnosEXP=null;
+	$aux = null;
+	while($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+		$aux[] = array_map('utf8_encode', $fila);
+	}
+	$alumnos[0] = $aux;
 
-while($fila=mysqli_fetch_array($result)){
-	$alumnosAMO[$i]=$fila;
-	$i++;
-}
+	$result = $conexion->prepare("SELECT a.DNI AS EXP_DNI, a.Nombre AS EXP_NOMBRE, a.Apellidos AS EXP_APELLIDOS, a.CodCurso AS EXP_CURSO, COUNT(a.DNI) AS CUENTA FROM alumnos a, expulsiones e WHERE e.IdAlumno=a.DNI AND e.Fecha_Firma IS NULL GROUP BY a.DNI");
+	$result->execute();
 
-while($fila2=mysqli_fetch_array($result2)){
-	$alumnosEXP[$j]=$fila2;
-	$j++;
-}
+	$aux = null;
+	while($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+		$aux[] = array_map('utf8_encode', $fila);
+	}
+	$alumnos[1] = $aux;
 
-$alumnos[0]=$alumnosAMO;
-$alumnos[1]=$alumnosEXP;
+	echo json_encode($alumnos);
 
-echo json_encode($alumnos);
-
-mysqli_close($conexion);
+?>

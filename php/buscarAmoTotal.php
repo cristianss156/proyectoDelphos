@@ -1,21 +1,15 @@
 <?php
 
-$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	require_once('conexionBD.php');
 
-$result=mysqli_query($conexion, "select p.nombre as NOMBRE, p.apellidos as APELLIDOS, count(*) as TOTAL from amonestaciones a, profesores p where p.CodProfesor=a.CodProfesor group by p.nombre;") or die ("Error al consultar.");
+	$result = $conexion->prepare("SELECT p.nombre AS NOMBRE, p.apellidos AS APELLIDOS, COUNT(*) AS TOTAL FROM amonestaciones a, profesores p WHERE p.CodProfesor=a.CodProfesor GROUP BY p.nombre;");
+	$result->execute();
 
-$i=0;
-$total=null;
+	if(count($result) !== 0) {
+		while($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+			$totalAMO[] = array_map('utf8_encode', $fila);
+		}
+		echo json_encode($totalAMO);
+	} else { echo 0; }
 
-while($fila=mysqli_fetch_array($result)){
-	$totalAMO[$i]=$fila;
-	$i++;
-}
-
-if(isset($totalAMO)){
-	$total[]=$totalAMO;
-}
-
-echo json_encode($total);
-
-mysqli_close($conexion);
+?>
