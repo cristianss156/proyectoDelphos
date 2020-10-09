@@ -56,7 +56,7 @@ document.getElementById("crearAmo").addEventListener("click", function() {
 function recibirDatosLoginGeneral( response ) {
 	var profesor=[];
 			
-	if(response === 0){
+	if(response === "0"){
 		location.href = "index.html";
 	} else { 
 		let profesor = JSON.parse(response);

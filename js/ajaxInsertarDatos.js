@@ -132,7 +132,7 @@ function recibirDatosLogin( response ) {
 
 // Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras amonestar
 function recibirResultadoAmonestacion( response ) {
-	if(response === 0) {
+	if(response === "0") {
 		mensaje("Error al registrar la amonestación");
 	}	else {
 		mensaje("Amonestación guardada");
@@ -150,7 +150,7 @@ function recibirResultadoExpulsion( response ) {
 
 // Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras firmar
 function recibirResultadoFirma( response ) {
-	if(reponse === 0) {
+	if(response === "0") {
 		mensaje("Error al registrar la firma");
 	}	else {
 		mensaje("Firma guardada");
@@ -160,7 +160,7 @@ function recibirResultadoFirma( response ) {
 
 // Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras sancionar
 function recibirResultadoSancion( response ) {
-	if(response === 0) {
+	if(response === "0") {
 		mensaje("Error al registrar la sanción");
 	}	else {
 		mensaje("Sanción guardada");

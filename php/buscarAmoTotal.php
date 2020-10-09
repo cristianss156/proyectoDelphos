@@ -2,7 +2,7 @@
 
 	require_once('conexionBD.php');
 
-	$result = $conexion->prepare("SELECT p.nombre AS NOMBRE, p.apellidos AS APELLIDOS, COUNT(*) AS TOTAL FROM amonestaciones a, profesores p WHERE p.CodProfesor=a.CodProfesor GROUP BY p.nombre;");
+	$result = $conexion->prepare("SELECT p.Nombre AS NOMBRE, p.Apellidos AS APELLIDOS, COUNT(*) AS TOTAL FROM amonestaciones a, profesores p WHERE p.CodProfesor=a.CodProfesor GROUP BY p.CodProfesor;");
 	$result->execute();
 
 	if(count($result) !== 0) {

@@ -40,7 +40,7 @@ document.getElementById("salir").addEventListener("click", function() {
 function recibirDatosLogin( response ) {
 	let mostrar = "";
 
-	if(response == 0) {
+	if(response === "0") {
 		document.getElementById("formLogin").style.display = "flex";
 	} else {
 		let profesor = JSON.parse(response);
@@ -57,7 +57,7 @@ function recibirDatosLogin( response ) {
 function recibirResultadoLogin( response ) {
 	let mostrar = "";
 	
-	if(response === 0) {
+	if(response === "0") {
 		mensaje("Datos de inicio de sesión erroneos");
 		document.getElementById("usuario").focus();
 	} else {

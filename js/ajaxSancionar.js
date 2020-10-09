@@ -14,7 +14,7 @@ document.getElementById("buscarSan").addEventListener("click", function() {
 /* Funcion que comprueba la respuesta del servidor y muestra un mensaje de informacion tras la busqueda por dni,
 	si la busqueda a sido correcta llama a una funcion que se encarga de formatear los datos */
 function recibirBusquedaAmoSan( response ) {
-	if(response === 0) {
+	if(response === "0") {
 		clearTablaSan();
 		mensaje("No se han encontrado datos que coincidan con tu busqueda");
 		document.getElementById("tablaDeSanciones").style.display="none";

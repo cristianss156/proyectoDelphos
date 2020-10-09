@@ -70,7 +70,7 @@ document.getElementById("filtro_cinco").addEventListener("click", function() {
 function recibirDatosLogin( response ) {
 	var profesor=[];
 			
-	if(response === 0) {
+	if(response === "0") {
 		location.href = "index.html";
 	} else {
 		let profesor = JSON.parse(response);
@@ -116,7 +116,7 @@ function recibirAlumnoSinFirma( response ) {
 
 // Funcion que comprueba la respuesta del servidor al consultar las amonestaciones de un profesor
 function recibirAmoProf( response ) {
-	if(response === 0){
+	if(response === "0"){
 		clearLista();
 		mensaje("No se han encontrado datos que coincidan con tu busqueda");
 	}	else {
@@ -138,7 +138,7 @@ function recibirAmoExpGrp( response ) {
 
 // Funcion que comprueba la respuesta del servidor al consultar las amonestaciones totales de cada profesor
 function recibirAmoTotales( response ) {
-	if(response === 0) {
+	if(response === "0") {
 		clearLista();
 		mensaje("No se han encontrado datos que coincidan con tu busqueda");
 	}	else {
@@ -235,7 +235,7 @@ function formatearBusqueda( ArrayAlumn ) {
 				let span = document.createElement('span');
 				span.setAttribute('class', 'span');
 				span.innerHTML = "<b>DNI:</b> " + ArrayAlumn[i][j]["DNI"] + "<br><b>Nombre:</b> " + ArrayAlumn[i][j]["NOMBRE"]
-				+ " " + ArrayAlumn[i][j]["APELLIDOS"] + "<br><b>Curso:</b> " + ArrayAlumn[i][j]["CURSO"] + "<b>Cantidad:</b> "
+				+ " " + ArrayAlumn[i][j]["APELLIDOS"] + "<br><b>Curso:</b> " + ArrayAlumn[i][j]["CURSO"] + "<br><b>Cantidad:</b> "
 				+ ArrayAlumn[i][j]["CUENTA"];
 				div.appendChild(span);
 				tabla.appendChild(div);
@@ -324,13 +324,13 @@ function formatearBusquedaTotal( ArrayTotal ) {
 	prof.appendChild(spanprof);
 	tabla.appendChild(prof);
 
-	for(let i in ArrayTotal[0]) {
+	for(let i in ArrayTotal) {
 		let div=document.createElement('div');
 		div.setAttribute('class', 'itemLista');
 		let span = document.createElement('span');
 		span.setAttribute('class', 'span');
-		span.innerHTML = "<b>Nombre:</b> " + ArrayTotal[0][i]["NOMBRE"] + " " + ArrayTotal[0][i]["APELLIDOS"] +
-		"<br><b>Total de amonestaciones:</b> " + ArrayTotal[0][i]["TOTAL"];
+		span.innerHTML = "<b>Nombre:</b> " + ArrayTotal[i]["NOMBRE"] + " " + ArrayTotal[i]["APELLIDOS"] +
+		"<br><b>Total de amonestaciones:</b> " + ArrayTotal[i]["TOTAL"];
 		div.appendChild(span);
 		tabla.appendChild(div);
 	}

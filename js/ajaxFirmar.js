@@ -28,7 +28,7 @@ var V_dni;
 	si la respuesta es correcta se llama a una funcion concreta dependiendo de si se quiere
 	firma una amonestacion o una expulsion */
 function recibirBusqueda( response ) {
-		if(response === 0) {
+		if(response === "0") {
 		clearTable();
 		document.getElementById("fech_firma").min = "";
 		document.getElementById("fech_firma").value = "";

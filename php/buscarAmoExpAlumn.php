@@ -5,7 +5,7 @@
 	$_dni = $_REQUEST["dni"];
 	$alumnos = null;
 
-	$result = $conexion->prepare($"SELECT al.nombre AS NOMBRE, al.apellidos AS APELLIDOS, ca.descripcion AS CAUSA, a.Fecha_Amonestacion AS FECHA FROM alumnos al, amonestaciones a, causas_amonestacion ca WHERE al.DNI=:_DNI AND a.IdAlumno=:_DNI AND a.CausaAmonestacion=ca.CodCausa_Amonestacion;");
+	$result = $conexion->prepare("SELECT al.nombre AS NOMBRE, al.apellidos AS APELLIDOS, ca.descripcion AS CAUSA, a.Fecha_Amonestacion AS FECHA FROM alumnos al, amonestaciones a, causas_amonestacion ca WHERE al.DNI=:_DNI AND a.IdAlumno=:_DNI AND a.CausaAmonestacion=ca.CodCausa_Amonestacion;");
 	$result->bindValue(':_DNI', $_dni, PDO::PARAM_STR);
 	$result->execute();
 
