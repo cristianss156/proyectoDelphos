@@ -1,11 +1,14 @@
 <?php
 
-	$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	require_once('conexionBD.php');
 
-	$nuevaAmo=$_REQUEST["causa"];
+	$nuevaAmo = $_REQUEST["causa"];
 
-	$result=mysqli_query($conexion, "insert into causas_amonestacion (descripcion) values ('$nuevaAmo');") or die ("Error al insertar.");
+	$result = $conexion->prepare("INSERT INTO causas_amonestacion (descripcion) VALUES (:_NEW);");
+	$result->bindvalue(':_NEW', $nuevaAmo, PDO::PARAM_STR);
+	$result->execute();
 
-	mysqli_close($conexion);
+	if($result->rowCount() == 0) { echo 0; }
+	else { echo 1; }
 
 ?>

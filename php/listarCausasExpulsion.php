@@ -1,18 +1,15 @@
 <?php
 
-	$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	require_once('conexionBD.php');
 
-	$result=mysqli_query($conexion, "select * from causa_expulsion") or die ("Error al consultar.");
+	$result = $conexion("SELECT * FROM causa_expulsion");
+	$result->execute();
 
-	$i=0;
-
-	while($fila=mysqli_fetch_array($result)){
-		$causas_expulsion[$i]=$fila;
-		$i++;
-	}
-
-	echo json_encode($causas_expulsion);
-
-	mysqli_close($conexion);
+	if(count($result) !== 0) {
+		while($fila = $result->fetch(PDO::FETCH_ASSOC)){
+			$vuelta[] = array_map('utf8_encode', $fila);
+		}
+		echo json_encode($vuelta);
+	} else { echo 0; }
 
 ?>

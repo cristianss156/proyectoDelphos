@@ -2,29 +2,23 @@
 
 	session_start();
 
-	$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	require_once('conexionBD.php');
 
-	$datosLogin=json_decode($_REQUEST["datos"],true);
+	$datosLogin = json_decode($_REQUEST["datos"],true);
 
-	$result=mysqli_query($conexion, "select * from profesores where CodProfesor='".$datosLogin["usuario"]."' and Password='".$datosLogin["password"]."'") or die("Error en el login.");
+	$result = $conexion->prepare("SELECT * FROM profesores WHERE CodProfesor=:_USER AND Password=:_PASS");
+	$result->bindvalue(':_USER', $datosLogin["usuario"], PDO::PARAM_STR);
+	$result->bindvalue(':_PASS', $datosLogin["password"], PDO::PARAM_STR);
+	$result->execute();
 
-	$i=0;
-
-	while($fila=mysqli_fetch_array($result)){
-		$resultLogin[$i]=$fila;
-		$i++;
-	}
-
-	if(isset($resultLogin)){
-		$_SESSION["USUARIO"]=$datosLogin["usuario"];
-		$_SESSION["NOMBRE"]=$resultLogin[0]["Nombre"]." ".$resultLogin[0]["Apellidos"];
-		$_SESSION["PERMISO"]=$resultLogin[0]["Permisos"];
+	if(count($result) !== 0) {
+		while($fila = $result->fetch(PDO::FETCH_ASSOC)){
+			$resultLogin[] = array_map('utf8_encode', $fila);
+		}
+		$_SESSION["USUARIO"] = $datosLogin["usuario"];
+		$_SESSION["NOMBRE"] = $resultLogin[0]["Nombre"]." ".$resultLogin[0]["Apellidos"];
+		$_SESSION["PERMISO"] = $resultLogin[0]["Permisos"];
 		echo json_encode($resultLogin);
-	}
-	else{
-		echo 0;
-	}
-
-	mysqli_close($conexion);
+	}	else { echo 0; }
 
 ?>

@@ -1,38 +1,57 @@
 <?php
 
-	$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	require_once('conexionBD.php');
 
-	$datosExp=$_REQUEST["datosExpulsion"];
-	$datos_php=json_decode($datosExp, true);
-	$codExpulsion=getcodigo();
-	$codSancion=getcodigo();
+	$datosExp = $_REQUEST["datosExpulsion"];
+	$datos_php = json_decode($datosExp, true);
+	$codExpulsion = getcodigo();
+	$codSancion = getcodigo();
 
 	function getcodigo() {
-	    $patron = '1234567890abcdefghijklmnopqrstuvwxyz';
-	    $max = strlen($patron)-1;
-	    $cadena='';
-	    for($i=0;$i<9;$i++){
-	        $cadena .= $patron{mt_rand(0,$max)};
-	    }
-	    return $cadena;
+    $patron = '1234567890abcdefghijklmnopqrstuvwxyz';
+    $max = strlen($patron) - 1;
+    $cadena = '';
+    for($i = 0; $i < 9; $i++) {
+      $cadena .= $patron{mt_rand(0, $max)};
+    }
+    return $cadena;
 	}
 
-	if($datos_php["tipo"]==="normal"){
-		$result=mysqli_query($conexion, "insert into expulsiones values ('$codExpulsion', '".$datos_php["alumno"]."', '".$datos_php["profesor"]."', '".$datos_php["asignatura"]."', '".$datos_php["causa"]."', '".$datos_php["curso"]."', '".$datos_php["fecha"]."', '".$datos_php["hora"]."', null, null);") or die ("Error al insertar.");
-	}
+	$result = $conexion->prepare("INSERT INTO expulsiones VALUES (:_CODE, :_ALUM, :_PROF, :_ASIG, :_CAUS, :_CURS, :_FECH, :_HORA);");
+	$result->bindvalue(':_CODE', $codExpulsion, PDO::PARAM_STR);
+	$result->bindvalue(':_ALUM', $datos_php["alumno"], PDO::PARAM_STR);
+	$result->bindvalue(':_PROF', $datos_php["profesor"], PDO::PARAM_STR);
+	$result->bindvalue(':_ASIG', $datos_php["asignatura"], PDO::PARAM_STR);
+	$result->bindvalue(':_CAUS', $datos_php["causa"], PDO::PARAM_STR);
+	$result->bindvalue(':_CURS', $datos_php["curso"], PDO::PARAM_STR);
+	$result->bindvalue(':_FECH', $datos_php["fecha"], PDO::PARAM_STR);
+	$result->bindvalue(':_HORA', $atos_php["hora"], PDO::PARAM_STR);
+	$result->execute();
 
-	if($datos_php["tipo"]==="SancionDirecta"){
+	if($datos_php["tipo"] === "SancionDirecta") {
+    $resultCausa = $conexion->prepare("SELECT descripcion FROM causa_expulsion WHERE CodCausa_Expulsion=:_CAUS");
+    $resultCausa->bindvalue(':_CAUS', $datos_php["causa"], PDO::PARAM_STR);
+    $resultCausa->execute();
 
-    $resultCausa=mysqli_query($conexion, "select descripcion from causa_expulsion where CodCausa_Expulsion='".$datos_php["causa"]."'");
-    $causaSan=mysqli_fetch_array($resultCausa);
-    $causa=$causaSan["descripcion"];
+    if(count($resultCausa) !== 0) {
+			while($fila = $resultCausa->fetch(PDO::FETCH_ASSOC)){
+				$vuelta[] = array_map('utf8_encode', $fila);
+			}
+	    $causa = $vuelta["descripcion"];
+			
+			$result2 = $conexion->prepare("INSERT INTO sanciones VALUES (:_CODS, :_ALUM, :_PROF, :_CAUS, :_FECH)");
+			$result2->bindvalue(':_CODS', $codSancion, PDO::PARAM_STR);
+			$result2->bindvalue(':_ALUM', $datos_php["alumno"], PDO::PARAM_STR);
+			$result2->bindvalue(':_PROF', $datos_php["profesor"], PDO::PARAM_STR);
+			$result2->bindvalue(':_CAUS', $causa, PDO::PARAM_STR);
+			$result2->bindvalue(':_FECH', $datos_php["fecha"], PDO::PARAM_STR);
+			$result2->execute;
 
-		$result=mysqli_query($conexion, "insert into expulsiones values ('$codExpulsion', '".$datos_php["alumno"]."', '".$datos_php["profesor"]."', '".$datos_php["asignatura"]."', '".$datos_php["causa"]."', '".$datos_php["curso"]."', '".$datos_php["fecha"]."', '".$datos_php["hora"]."', null, null);") or die ("Error al insertar.");
-		$result2=mysqli_query($conexion, "insert into sanciones values ('$codSancion', '".$datos_php["alumno"]."', '".$datos_php["profesor"]."', '$causa', '".$datos_php["fecha"]."')") or die ("Error al insertar.");
-		$result3=mysqli_query($conexion, "update expulsiones set CodSancion='$codSancion' where CodExpulsiones='$codExpulsion'") or die ("Error al actualizar");
-
-	}
-
-	mysqli_close($conexion);
+			$result2 = $conexion->prepare("UPDATE expulsiones SET CodSancion=:_CODS WHERE CodExpulsiones=:_CODE");
+			$result2->bindvalue(':_CODS', $codSancion, PDO::PARAM_STR);
+			$result2->bindvalue(':_CODE', $codExpulsion, PDO::PARAM_STR);
+			$result2->execute();
+		}
+	}	
 
 ?>

@@ -1,20 +1,18 @@
 <?php
 
-	$conexion=mysqli_connect("localhost", "root", "root", "delphosdbcristian") or die("Fallo en la conexion.");
+	require_once('conexionBD.php');
 
-	$curso=$_REQUEST["curso"];
+	$curso = $_REQUEST["curso"];
 
-	$result=mysqli_query($conexion, "select * from asignaturas where codcurso='$curso'") or die ("Error al consultar.");
+	$result = $conexion->prepare("SELECT * FROM asignaturas WHERE codcurso=:_CURS");
+	$result->bindvalue(':_CURS', $curso, PDO::PARAM_STR);
+	$result->execute();
 
-	$i=0;
-
-	while($fila=mysqli_fetch_array($result)){
-		$vuelta[$i]=$fila;
-		$i++;
-	}
-
-	echo json_encode($vuelta);
-
-	mysqli_close($conexion);
+	if(count($result) !== 0) {
+		while($fila = $result->fetch(PDO::FETCH_ASSOC)){
+			$vuelta[] = array_map('utf8_encode', $fila);
+		}
+		echo json_encode($vuelta);
+	} else { echo 0; }
 
 ?>
